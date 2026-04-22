@@ -1,100 +1,292 @@
+import { useState, useRef, useCallback } from "react";
+import { Link } from "react-router-dom";
+import { Search, RefreshCw, ChevronLeft, ChevronRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import { useParams, Link } from "react-router-dom";
-import { api } from "@/lib/api";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ExternalLink, Folder, FileText, Activity, ShieldCheck, MoreHorizontal, Plus, ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Client } from "@/types";
+import { api } from "@/lib/api";
 
-export function Clients() {
-  const { id } = useParams();
-  const { data: clients = [] } = useQuery<Client[]>({ queryKey: ["clients"], queryFn: api.clients.list });
+// ── Column config ─────────────────────────────────────────────────────────────
+const DEFAULT_WIDTHS = [280, 120, 220, 90, 90, 120, 180, 180];
+const COL_LABELS = ["Account UUID", "Company ID", "Account Name", "Activo", "Brief", "Frecuencia", "Creado", "Brief completado"];
+const MIN_WIDTH = 80;
+const PAGE_SIZE = 20;
 
-  const filteredClients = id ? clients.filter(c => c.id === id) : clients;
-  const isSingleView = !!id;
+// ── Resizable header ──────────────────────────────────────────────────────────
+function ResizableHeader({ label, width, isLast, onResize }: {
+  label: string; width: number; isLast: boolean;
+  onResize: (delta: number) => void;
+}) {
+  const dragging = useRef(false);
+  const startX = useRef(0);
+
+  const onMouseDown = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    dragging.current = true;
+    startX.current = e.clientX;
+    const onMove = (ev: MouseEvent) => {
+      if (!dragging.current) return;
+      onResize(ev.clientX - startX.current);
+      startX.current = ev.clientX;
+    };
+    const onUp = () => {
+      dragging.current = false;
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+    };
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+  }, [onResize]);
 
   return (
-    <div className="p-8 space-y-8 bg-background min-h-screen text-foreground">
-      <header className="flex justify-between items-center">
-        <div className="flex items-center gap-4">
-          {isSingleView && (
-            <Link to="/clients">
-              <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
-                <ArrowLeft className="w-5 h-5" />
-              </Button>
-            </Link>
-          )}
-          <div>
-            <h2 className="text-3xl font-bold tracking-tight">
-              {isSingleView ? `Client: ${filteredClients[0]?.name || 'Loading...'}` : 'Client 360'}
-            </h2>
-            <p className="text-muted-foreground text-sm mt-1">
-              {isSingleView ? 'Detailed operational context and assets.' : 'Consolidated operational profiles and assets.'}
-            </p>
-          </div>
+    <th style={{ width, minWidth: MIN_WIDTH }} className="relative text-left text-[10px] font-semibold text-muted-foreground uppercase tracking-widest px-3 py-2.5 bg-muted/40 border-b border-border select-none whitespace-nowrap font-mono">
+      <span className="truncate block pr-3">{label}</span>
+      {!isLast && (
+        <div onMouseDown={onMouseDown} className="absolute right-0 top-0 h-full w-1.5 cursor-col-resize hover:bg-[#60259F]/30 transition-colors" />
+      )}
+    </th>
+  );
+}
+
+// ── Main component ────────────────────────────────────────────────────────────
+export function Clients() {
+  const [search, setSearch]           = useState("");
+  const [searchInput, setSearchInput] = useState("");
+  const [briefFilter, setBriefFilter] = useState("all");
+  const [activeFilter, setActiveFilter] = useState("all");
+  const [freqFilter, setFreqFilter]   = useState("all");
+  const [page, setPage]               = useState(1);
+  const [colWidths, setColWidths]     = useState<number[]>(DEFAULT_WIDTHS);
+  const [forceRefresh, setForceRefresh] = useState(false);
+
+  const queryParams = { page, limit: PAGE_SIZE, search, active: activeFilter, brief: briefFilter, freq: freqFilter, forceRefresh };
+
+  const { data: result, isLoading, isError, refetch, isFetching } = useQuery({
+    queryKey: ["accounts-real", queryParams],
+    queryFn: () => api.accountsReal.list(queryParams),
+    staleTime: Infinity,
+    refetchInterval: (query) => query.state.data?.loading ? 5000 : false,
+  });
+
+  const rows       = result?.data  ?? [];
+  const total      = result?.total ?? 0;
+  const pages      = result?.pages ?? 1;
+  const serverLoading = result?.loading ?? false;
+
+  const handleRefresh = () => {
+    setForceRefresh(true);
+    setTimeout(() => { refetch().then(() => setForceRefresh(false)); }, 0);
+  };
+
+  // Apply search only on Enter or after 400ms debounce
+  const searchTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const handleSearchChange = (val: string) => {
+    setSearchInput(val);
+    if (searchTimeout.current) clearTimeout(searchTimeout.current);
+    searchTimeout.current = setTimeout(() => { setSearch(val); setPage(1); }, 400);
+  };
+
+  const handleFilter = (setter: (v: string) => void) => (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setter(e.target.value);
+    setPage(1);
+  };
+
+  const handleResize = useCallback((i: number, delta: number) => {
+    setColWidths(prev => {
+      const next = [...prev];
+      next[i] = Math.max(MIN_WIDTH, next[i] + delta);
+      return next;
+    });
+  }, []);
+
+  const selectClass = "h-8 rounded-full border border-border bg-white px-3 text-xs text-muted-foreground focus:outline-none focus:ring-1 focus:ring-[#60259F]/30 cursor-pointer";
+
+  return (
+    <div className="p-8 space-y-6 bg-background min-h-screen">
+      {/* Header */}
+      <div className="flex items-end justify-between">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#60259F] mb-1">Gestión de cuentas</p>
+          <h2 className="text-2xl font-black tracking-tight text-foreground" style={{ fontFamily: "'Cal Sans', sans-serif", letterSpacing: "-0.03em" }}>Clients</h2>
+          <p className="text-muted-foreground text-sm mt-1.5">Account registry and subscription overview.</p>
         </div>
-        {!isSingleView && (
-          <Button className="bg-[#BEFF50] hover:bg-[#BEFF50]/90 text-black font-bold gap-2">
-            <Plus className="w-4 h-4" /> New Client
-          </Button>
-        )}
-      </header>
-
-      <div className={cn(
-        "grid gap-6",
-        isSingleView ? "max-w-2xl" : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-      )}>
-        {filteredClients.map((client) => (
-          <Card key={client.id} className="bg-card border-border hover:border-muted-foreground/30 transition-all group shadow-sm">
-            <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-              <CardTitle className="text-lg font-bold">{client.name}</CardTitle>
-              <Badge className={cn(
-                "text-[10px] font-mono uppercase",
-                client.status === 'active' ? "bg-[#BEFF50]/20 text-[#BEFF50] border-[#BEFF50]/50" : "bg-red-100 text-red-700 border-red-200"
-              )}>
-                {client.status}
-              </Badge>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-xs text-muted-foreground line-clamp-2 italic">"{client.brief}"</p>
-              
-              <div className="grid grid-cols-2 gap-2">
-                <Button variant="outline" size="sm" className="bg-background border-border text-muted-foreground hover:text-foreground text-[10px] font-mono uppercase tracking-tighter gap-2">
-                  <Folder className="w-3 h-3" /> Drive
-                </Button>
-                <Button variant="outline" size="sm" className="bg-background border-border text-muted-foreground hover:text-foreground text-[10px] font-mono uppercase tracking-tighter gap-2">
-                  <Activity className="w-3 h-3" /> HubSpot
-                </Button>
-                <Button variant="outline" size="sm" className="bg-background border-border text-muted-foreground hover:text-foreground text-[10px] font-mono uppercase tracking-tighter gap-2">
-                  <ShieldCheck className="w-3 h-3" /> Access
-                </Button>
-                <Button variant="outline" size="sm" className="bg-background border-border text-muted-foreground hover:text-foreground text-[10px] font-mono uppercase tracking-tighter gap-2">
-                  <FileText className="w-3 h-3" /> Materials
-                </Button>
-              </div>
-
-              <div className="pt-4 border-t border-border flex justify-between items-center">
-                <div className="flex -space-x-2">
-                  {[1, 2].map((i) => (
-                    <div key={i} className="w-6 h-6 rounded-full bg-muted border-2 border-background flex items-center justify-center text-[8px] font-mono text-muted-foreground">
-                      U{i}
-                    </div>
-                  ))}
-                </div>
-                {!isSingleView && (
-                  <Link to={`/clients/${client.id}`}>
-                    <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-[#BEFF50] text-[10px] uppercase font-mono tracking-widest gap-1">
-                      View Profile <ExternalLink className="w-3 h-3" />
-                    </Button>
-                  </Link>
-                )}
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+        <button
+          onClick={handleRefresh}
+          disabled={isFetching}
+          className="flex items-center gap-2 px-3 py-2 rounded-xl border border-border bg-white hover:border-[#60259F]/30 text-xs text-muted-foreground hover:text-[#60259F] transition-all disabled:opacity-40"
+        >
+          <RefreshCw className={cn("w-3.5 h-3.5", isFetching && "animate-spin")} />
+          Actualizar
+        </button>
       </div>
+
+      {/* Filters */}
+      <div className="flex items-center gap-3 flex-wrap">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+          <input
+            value={searchInput}
+            onChange={e => handleSearchChange(e.target.value)}
+            placeholder="Buscar..."
+            className="h-8 pl-8 pr-3 rounded-full border border-border bg-white text-xs focus:outline-none focus:ring-1 focus:ring-[#60259F]/30 w-48"
+          />
+        </div>
+        <select value={activeFilter} onChange={handleFilter(setActiveFilter)} className={selectClass}>
+          <option value="all">Todos</option>
+          <option value="true">Activos</option>
+          <option value="false">Inactivos</option>
+        </select>
+        <select value={briefFilter} onChange={handleFilter(setBriefFilter)} className={selectClass}>
+          <option value="all">Brief: todos</option>
+          <option value="true">Brief completado</option>
+          <option value="false">Sin brief</option>
+        </select>
+        <select value={freqFilter} onChange={handleFilter(setFreqFilter)} className={selectClass}>
+          <option value="all">Frecuencia: todas</option>
+          <option value="monthly">Monthly</option>
+          <option value="quarterly">Quarterly</option>
+          <option value="annual">Annual</option>
+        </select>
+        <span className="ml-auto text-xs text-muted-foreground font-mono">
+          {isLoading ? "Cargando..." : `${total} clientes`}
+        </span>
+      </div>
+
+      {/* Loading / Error states */}
+      {(isLoading || serverLoading) && (
+        <div className="flex items-center justify-center py-20 gap-3 text-muted-foreground text-sm">
+          <div className="w-4 h-4 border-2 border-[#60259F]/30 border-t-[#60259F] rounded-full animate-spin" />
+          {serverLoading ? "Preparando datos del servidor... (~30s la primera vez)" : "Cargando cuentas..."}
+        </div>
+      )}
+      {isError && (
+        <div className="text-center py-20 text-red-500 text-sm">Error al cargar cuentas. Verifica que el servidor esté corriendo.</div>
+      )}
+
+      {/* Table */}
+      {!isLoading && !isError && !serverLoading && (
+        <>
+          <div className="rounded-xl border border-border overflow-hidden shadow-sm">
+            <div className="overflow-x-auto">
+              <table className="border-collapse" style={{ tableLayout: "fixed", width: colWidths.reduce((a, b) => a + b, 0) }}>
+                <thead>
+                  <tr>
+                    {COL_LABELS.map((label, i) => (
+                      <ResizableHeader
+                        key={label}
+                        label={label}
+                        width={colWidths[i]}
+                        isLast={i === COL_LABELS.length - 1}
+                        onResize={delta => handleResize(i, delta)}
+                      />
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.length === 0 ? (
+                    <tr><td colSpan={8} className="text-center py-12 text-muted-foreground text-sm bg-white">No hay clientes que coincidan.</td></tr>
+                  ) : rows.map((row: any, idx: number) => (
+                    <tr key={row.account_uuid} className={cn("border-b border-border hover:bg-muted/30 transition-colors", idx % 2 === 0 ? "bg-white" : "bg-muted/10")}>
+                      <td style={{ width: colWidths[0] }} className="px-3 py-2 overflow-hidden">
+                        <Link to={`/clients/${row.account_uuid}`} className="font-mono text-[10px] text-[#60259F] hover:underline truncate block">
+                          {row.account_uuid}
+                        </Link>
+                      </td>
+                      <td style={{ width: colWidths[1] }} className="px-3 py-2 overflow-hidden">
+                        {row.company_id
+                          ? <a href={`https://app-eu1.hubspot.com/contacts/25808060/record/0-2/${row.company_id}`} target="_blank" rel="noreferrer" className="font-mono text-xs text-[#60259F] hover:underline truncate block">{row.company_id}</a>
+                          : <span className="text-xs text-muted-foreground">—</span>}
+                      </td>
+                      <td style={{ width: colWidths[2] }} className="px-3 py-2 overflow-hidden">
+                        <span className="text-xs font-medium text-foreground truncate block">{row.account_name || "—"}</span>
+                      </td>
+                      <td style={{ width: colWidths[3] }} className="px-3 py-2 overflow-hidden">
+                        <span className={cn("inline-flex items-center text-[10px] font-semibold px-2 py-0.5 rounded-full border",
+                          row.active ? "bg-green-50 text-green-700 border-green-200" : "bg-slate-50 text-slate-500 border-slate-200"
+                        )}>
+                          {row.active ? "activo" : "inactivo"}
+                        </span>
+                      </td>
+                      <td style={{ width: colWidths[4] }} className="px-3 py-2 overflow-hidden">
+                        <span className={cn("inline-flex items-center text-[10px] font-semibold px-2 py-0.5 rounded-full border",
+                          row.brief_completed ? "bg-[#60259F]/10 text-[#60259F] border-[#60259F]/20" : "bg-muted text-muted-foreground border-border"
+                        )}>
+                          {row.brief_completed ? "✓ completo" : "pendiente"}
+                        </span>
+                      </td>
+                      <td style={{ width: colWidths[5] }} className="px-3 py-2 overflow-hidden">
+                        <span className="text-xs text-muted-foreground capitalize truncate block">{row.preferred_frequency || "—"}</span>
+                      </td>
+                      <td style={{ width: colWidths[6] }} className="px-3 py-2 overflow-hidden">
+                        <span className="text-xs text-muted-foreground font-mono truncate block">
+                          {row.created_at ? new Date(row.created_at).toLocaleDateString("es-ES", { day: "2-digit", month: "short", year: "numeric" }) : "—"}
+                        </span>
+                      </td>
+                      <td style={{ width: colWidths[7] }} className="px-3 py-2 overflow-hidden">
+                        {row.brief_started_at
+                          ? <span className="text-xs text-muted-foreground font-mono truncate block">
+                              {new Date(row.brief_started_at).toLocaleDateString("es-ES", { day: "2-digit", month: "short", year: "numeric" })}
+                            </span>
+                          : <span className="text-xs text-muted-foreground">—</span>
+                        }
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Pagination */}
+          {pages > 1 && (
+            <div className="flex items-center justify-between pt-1">
+              <span className="text-xs text-muted-foreground font-mono">
+                Página {page} de {pages} · {total} resultados
+              </span>
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={() => setPage(p => Math.max(1, p - 1))}
+                  disabled={page === 1 || isFetching}
+                  className="w-7 h-7 flex items-center justify-center rounded-lg border border-border bg-white hover:border-[#60259F]/30 disabled:opacity-40 transition-colors"
+                >
+                  <ChevronLeft className="w-3.5 h-3.5 text-muted-foreground" />
+                </button>
+                {Array.from({ length: pages }, (_, i) => i + 1)
+                  .filter(p => p === 1 || p === pages || Math.abs(p - page) <= 2)
+                  .reduce<(number | "…")[]>((acc, p, i, arr) => {
+                    if (i > 0 && (p as number) - (arr[i - 1] as number) > 1) acc.push("…");
+                    acc.push(p);
+                    return acc;
+                  }, [])
+                  .map((p, i) =>
+                    p === "…"
+                      ? <span key={`ellipsis-${i}`} className="w-7 text-center text-xs text-muted-foreground">…</span>
+                      : <button
+                          key={p}
+                          onClick={() => setPage(p as number)}
+                          disabled={isFetching}
+                          className={cn(
+                            "w-7 h-7 rounded-lg border text-xs font-mono transition-colors",
+                            page === p
+                              ? "bg-[#60259F] text-white border-[#60259F]"
+                              : "bg-white border-border hover:border-[#60259F]/30 text-muted-foreground"
+                          )}
+                        >
+                          {p}
+                        </button>
+                  )
+                }
+                <button
+                  onClick={() => setPage(p => Math.min(pages, p + 1))}
+                  disabled={page === pages || isFetching}
+                  className="w-7 h-7 flex items-center justify-center rounded-lg border border-border bg-white hover:border-[#60259F]/30 disabled:opacity-40 transition-colors"
+                >
+                  <ChevronRight className="w-3.5 h-3.5 text-muted-foreground" />
+                </button>
+              </div>
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 }

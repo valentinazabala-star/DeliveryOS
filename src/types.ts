@@ -1,3 +1,14 @@
+import type { TeamMember } from "./data/teamData";
+
+export interface AuthUser {
+  id: string;
+  name: string;
+  email: string;
+  role: "management" | "production";
+  teamMember?: TeamMember;
+  title?: string;
+}
+
 export type TaskStatus = 'por_asignar' | 'ready' | 'in_progress' | 'review' | 'blocked' | 'done';
 export type Priority = 'low' | 'medium' | 'high' | 'critical';
 
@@ -13,6 +24,15 @@ export interface Task {
   blocked_reason?: string;
   blocked_at?: string;
   created_at: string;
+  // Orbidi fields
+  task_state?: string;
+  task_group?: string | null;
+  assigned_team?: string;
+  clickup_id?: string;
+  render_url?: string | null;
+  release_date?: string;
+  is_blocked?: boolean;
+  deliverables?: any[];
 }
 
 export interface Client {
@@ -31,7 +51,7 @@ export interface Material {
   client_id: string;
   url: string;
   type: string;
-  used_in_tasks: string[]; // IDs of tasks where it was used
+  used_in_tasks: string[];
 }
 
 export interface User {

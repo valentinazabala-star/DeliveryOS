@@ -4,5 +4,13 @@ dist/
 coverage/
 .DS_Store
 *.log
-.env*
-!.env.example
+
+# Secrets — never commit
+.env
+.env.local
+.env.*.local
+
+# Large auto-generated cache — regenerates on startup (~80 min first boot)
+data/cache-snapshot.json
+
+# Keep everything else in data/ (UUIDs, history, statuses, overrides)

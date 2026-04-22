@@ -16,9 +16,12 @@ export default defineConfig(({mode}) => {
       },
     },
     server: {
-      // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
+      watch: {
+        // Ignore server-side data files so Vite does not reload the page
+        // every time the server writes task-statuses.json or last-assignment.json
+        ignored: ['**/data/**'],
+      },
     },
   };
 });

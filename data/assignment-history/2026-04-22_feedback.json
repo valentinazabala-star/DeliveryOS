@@ -1,0 +1,1781 @@
+{
+  "target_date": "2026-04-22",
+  "days_window": 5,
+  "work_mode": "feedback",
+  "schedules": [
+    {
+      "person_id": "1",
+      "person_name": "Juliana Montero",
+      "role": "Content_Specialist",
+      "work_type": "feedback",
+      "capacity_min": 510,
+      "days": [
+        {
+          "date": "2026-04-22",
+          "used_min": 0,
+          "task_count": 19,
+          "tasks": [
+            {
+              "task_id": "4ca84061-0a2d-4568-a6bd-b2a617194641",
+              "account_uuid": "169cb909-71ad-4cb4-9376-59dfb1dcd220",
+              "client_name": "Amalua",
+              "task_title": "SEO - Estrategia de SEO",
+              "product_name": "Estrategia de SEO",
+              "is_feedback": true,
+              "product_category": "SEO",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "1",
+                "person_name": "Juliana Montero"
+              }
+            },
+            {
+              "task_id": "1d90eec0-f080-4537-bc7c-cb4d68980194",
+              "account_uuid": "169cb909-71ad-4cb4-9376-59dfb1dcd220",
+              "client_name": "Amalua",
+              "task_title": "SEO - Marketing de contenidos optimizados para buscadores (Artículos SEO en blog)",
+              "product_name": "SEO en blog",
+              "is_feedback": true,
+              "product_category": "SEO",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "1",
+                "person_name": "Juliana Montero"
+              }
+            },
+            {
+              "task_id": "72249666-6ada-4759-a2df-3567ea71393b",
+              "account_uuid": "169cb909-71ad-4cb4-9376-59dfb1dcd220",
+              "client_name": "Amalua",
+              "task_title": "GMB - Post de Noticias",
+              "product_name": "Post de Noticias",
+              "is_feedback": true,
+              "product_category": "GMB",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "1",
+                "person_name": "Juliana Montero"
+              }
+            },
+            {
+              "task_id": "244d0c79-2b9e-4c6f-9790-4b71423be59f",
+              "account_uuid": "169cb909-71ad-4cb4-9376-59dfb1dcd220",
+              "client_name": "Amalua",
+              "task_title": "GMB - Post de Noticias",
+              "product_name": "Post de Noticias",
+              "is_feedback": true,
+              "product_category": "GMB",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "1",
+                "person_name": "Juliana Montero"
+              }
+            },
+            {
+              "task_id": "2eaa9fa8-f4e2-4c66-85ef-3093a3b499bd",
+              "account_uuid": "169cb909-71ad-4cb4-9376-59dfb1dcd220",
+              "client_name": "Amalua",
+              "task_title": "GMB - Post de Noticias",
+              "product_name": "Post de Noticias",
+              "is_feedback": true,
+              "product_category": "GMB",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "1",
+                "person_name": "Juliana Montero"
+              }
+            },
+            {
+              "task_id": "7f69f522-fe73-44e3-8096-8bbac4cd3bd6",
+              "account_uuid": "0ba45cfa-d914-4b5e-8ca9-560767d4fc2b",
+              "client_name": "Ramon Lleonart Piza",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "1",
+                "person_name": "Juliana Montero"
+              }
+            },
+            {
+              "task_id": "eacc1d6e-29cd-4551-8982-3607c9ce0ba9",
+              "account_uuid": "0ba45cfa-d914-4b5e-8ca9-560767d4fc2b",
+              "client_name": "Ramon Lleonart Piza",
+              "task_title": "RRSS - Story de Instagram",
+              "product_name": "Story de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "1",
+                "person_name": "Juliana Montero"
+              }
+            },
+            {
+              "task_id": "9553999a-c9cc-4e20-8be3-19b541f89a4f",
+              "account_uuid": "0ba45cfa-d914-4b5e-8ca9-560767d4fc2b",
+              "client_name": "Ramon Lleonart Piza",
+              "task_title": "RRSS - Carrusel de Instagram",
+              "product_name": "Carrusel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "1",
+                "person_name": "Juliana Montero"
+              }
+            },
+            {
+              "task_id": "84d3d2ef-0d76-4d60-bcca-89f756750279",
+              "account_uuid": "f678f646-e8b5-4721-b5c6-aac6393f85bb",
+              "client_name": "Florencia",
+              "task_title": "SEO - Acciones SEO On-Page",
+              "product_name": "Acciones SEO On-Page",
+              "is_feedback": true,
+              "product_category": "SEO",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "1",
+                "person_name": "Juliana Montero"
+              }
+            },
+            {
+              "task_id": "f993d8da-78a6-4f6d-a346-e90b63b366da",
+              "account_uuid": "f678f646-e8b5-4721-b5c6-aac6393f85bb",
+              "client_name": "Florencia",
+              "task_title": "RRSS - Reel de Instagram",
+              "product_name": "Reel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "1",
+                "person_name": "Juliana Montero"
+              }
+            },
+            {
+              "task_id": "79652f48-3acc-4912-8ed7-314185ed60c6",
+              "account_uuid": "f678f646-e8b5-4721-b5c6-aac6393f85bb",
+              "client_name": "Florencia",
+              "task_title": "RRSS - Reel de Instagram",
+              "product_name": "Reel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "1",
+                "person_name": "Juliana Montero"
+              }
+            },
+            {
+              "task_id": "c2241871-9850-40df-a270-622367aae029",
+              "account_uuid": "659cda7f-aeb2-433f-afac-862233907b08",
+              "client_name": "Vanessa",
+              "task_title": "SEO - Estrategia de SEO",
+              "product_name": "Estrategia de SEO",
+              "is_feedback": true,
+              "product_category": "SEO",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "1",
+                "person_name": "Juliana Montero"
+              }
+            },
+            {
+              "task_id": "54130428-a45b-4e83-b5d6-6d0648b7441d",
+              "account_uuid": "659cda7f-aeb2-433f-afac-862233907b08",
+              "client_name": "Vanessa",
+              "task_title": "SEO - Acciones SEO On-Page",
+              "product_name": "Acciones SEO On-Page",
+              "is_feedback": true,
+              "product_category": "SEO",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "1",
+                "person_name": "Juliana Montero"
+              }
+            },
+            {
+              "task_id": "5fc535b4-a2ad-4067-9e3f-2378aa92e7cc",
+              "account_uuid": "38fbcd11-7ecf-4615-a13c-e86fac1ba78a",
+              "client_name": "Josefa Caballero Gomez",
+              "task_title": "SEO - ESTRATEGIA",
+              "product_name": "ESTRATEGIA",
+              "is_feedback": true,
+              "product_category": "SEO",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "1",
+                "person_name": "Juliana Montero"
+              }
+            },
+            {
+              "task_id": "363eee97-57d9-474e-baa4-ff0e85b14cf5",
+              "account_uuid": "7704a077-1b9c-4252-bd5f-6256ba622c14",
+              "client_name": "Xavier Mallol",
+              "task_title": "SEO - Estrategia de SEO",
+              "product_name": "Estrategia de SEO",
+              "is_feedback": true,
+              "product_category": "SEO",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "1",
+                "person_name": "Juliana Montero"
+              }
+            },
+            {
+              "task_id": "4cd4b8bd-23dc-43c2-9645-ac7a8ac220fa",
+              "account_uuid": "ba82a204-acbc-4706-8674-208a6c9e102d",
+              "client_name": "Maria",
+              "task_title": "RRSS - Carrusel de Instagram",
+              "product_name": "Carrusel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "1",
+                "person_name": "Juliana Montero"
+              }
+            },
+            {
+              "task_id": "0fa1df8f-b79b-4a9d-a8c7-8a6ff21c42d1",
+              "account_uuid": "d99a9321-5ade-4fda-9bcf-d358fc3f1147",
+              "client_name": "Merce",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "1",
+                "person_name": "Juliana Montero"
+              }
+            },
+            {
+              "task_id": "335f9a07-dbb4-4ab3-8636-dd6ea79b7a2b",
+              "account_uuid": "e329e679-e094-4142-9773-d550dc75c131",
+              "client_name": "Alicia Martín Lopez",
+              "task_title": "RRSS - Story de Instagram",
+              "product_name": "Story de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "1",
+                "person_name": "Juliana Montero"
+              }
+            },
+            {
+              "task_id": "d09970c7-994f-404d-a28d-fc931dd06c9e",
+              "account_uuid": "fba896b4-1ad1-4a63-9d3c-5fd7d5e3b69c",
+              "client_name": "Alex Ubeda Romero",
+              "task_title": "RRSS - Story de Instagram",
+              "product_name": "Story de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "1",
+                "person_name": "Juliana Montero"
+              }
+            }
+          ]
+        },
+        {
+          "date": "2026-04-23",
+          "used_min": 0,
+          "task_count": 0,
+          "tasks": []
+        },
+        {
+          "date": "2026-04-24",
+          "used_min": 0,
+          "task_count": 0,
+          "tasks": []
+        },
+        {
+          "date": "2026-04-27",
+          "used_min": 0,
+          "task_count": 0,
+          "tasks": []
+        },
+        {
+          "date": "2026-04-28",
+          "used_min": 0,
+          "task_count": 0,
+          "tasks": []
+        }
+      ],
+      "total_min": 0,
+      "total_tasks": 19,
+      "clients": [
+        "Amalua",
+        "Ramon Lleonart Piza",
+        "Florencia",
+        "Vanessa",
+        "Josefa Caballero Gomez",
+        "Xavier Mallol",
+        "Maria",
+        "Merce",
+        "Alicia Martín Lopez",
+        "Alex Ubeda Romero"
+      ]
+    },
+    {
+      "person_id": "2",
+      "person_name": "Valentina Gil",
+      "role": "Content_Specialist",
+      "work_type": "feedback",
+      "capacity_min": 510,
+      "days": [
+        {
+          "date": "2026-04-22",
+          "used_min": 0,
+          "task_count": 18,
+          "tasks": [
+            {
+              "task_id": "1723263a-0f10-4943-af2c-b1ae78c419fe",
+              "account_uuid": "220314cf-26ed-4b98-8591-b5174d32d4a1",
+              "client_name": "Maria Reyna",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "2",
+                "person_name": "Valentina Gil"
+              }
+            },
+            {
+              "task_id": "21d1db1a-5e5f-4e0a-b243-ce0b53aa27dc",
+              "account_uuid": "220314cf-26ed-4b98-8591-b5174d32d4a1",
+              "client_name": "Maria Reyna",
+              "task_title": "RRSS - Story de Instagram",
+              "product_name": "Story de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "2",
+                "person_name": "Valentina Gil"
+              }
+            },
+            {
+              "task_id": "c00a4200-d57c-4e6f-9dcd-1666712ae1a7",
+              "account_uuid": "220314cf-26ed-4b98-8591-b5174d32d4a1",
+              "client_name": "Maria Reyna",
+              "task_title": "RRSS - Story de Instagram",
+              "product_name": "Story de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "2",
+                "person_name": "Valentina Gil"
+              }
+            },
+            {
+              "task_id": "a24c9d14-8c48-452d-b59c-c7ad3274d075",
+              "account_uuid": "220314cf-26ed-4b98-8591-b5174d32d4a1",
+              "client_name": "Maria Reyna",
+              "task_title": "RRSS - Story de Instagram",
+              "product_name": "Story de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "2",
+                "person_name": "Valentina Gil"
+              }
+            },
+            {
+              "task_id": "b1ec207f-ffa7-4c7a-bd55-9a5ae9101ea7",
+              "account_uuid": "220314cf-26ed-4b98-8591-b5174d32d4a1",
+              "client_name": "Maria Reyna",
+              "task_title": "RRSS - Carrusel de Instagram",
+              "product_name": "Carrusel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "2",
+                "person_name": "Valentina Gil"
+              }
+            },
+            {
+              "task_id": "c911f1f1-d794-4a2a-8d0b-fedf13fb6fc7",
+              "account_uuid": "ad66df9c-9b44-4b32-b8e2-62bbf3ad232e",
+              "client_name": "Maria Valero",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "2",
+                "person_name": "Valentina Gil"
+              }
+            },
+            {
+              "task_id": "fcec363c-678f-427b-bcec-c83fd21852f6",
+              "account_uuid": "ad66df9c-9b44-4b32-b8e2-62bbf3ad232e",
+              "client_name": "Maria Valero",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "2",
+                "person_name": "Valentina Gil"
+              }
+            },
+            {
+              "task_id": "ed3e6143-4f74-4998-a14d-b3e72576bc02",
+              "account_uuid": "ad66df9c-9b44-4b32-b8e2-62bbf3ad232e",
+              "client_name": "Maria Valero",
+              "task_title": "RRSS - Reel de Instagram",
+              "product_name": "Reel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "2",
+                "person_name": "Valentina Gil"
+              }
+            },
+            {
+              "task_id": "ab74b241-aacc-4128-b22c-9f835e627b95",
+              "account_uuid": "697f099e-3a56-4232-a271-e583d29f6d83",
+              "client_name": "Pau",
+              "task_title": "RRSS - Carrusel de Instagram",
+              "product_name": "Carrusel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "2",
+                "person_name": "Valentina Gil"
+              }
+            },
+            {
+              "task_id": "0523cba0-57c1-4439-a0d8-660a2983e2f6",
+              "account_uuid": "697f099e-3a56-4232-a271-e583d29f6d83",
+              "client_name": "Pau",
+              "task_title": "SEO - Estrategia de SEO",
+              "product_name": "Estrategia de SEO",
+              "is_feedback": true,
+              "product_category": "SEO",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "2",
+                "person_name": "Valentina Gil"
+              }
+            },
+            {
+              "task_id": "dc6feab9-cfc5-431e-be04-f18ebe360e61",
+              "account_uuid": "0a137dc6-79b2-4b4c-8303-3f52d029fac7",
+              "client_name": "Galyna Keyvan Ivasyuk",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "2",
+                "person_name": "Valentina Gil"
+              }
+            },
+            {
+              "task_id": "86444685-7250-4c0d-a0a8-f755dd684418",
+              "account_uuid": "0a955e2f-f0bd-4b3a-82cc-e7b201b81b43",
+              "client_name": "Paloma Ripolles",
+              "task_title": "RRSS - Carrusel de Instagram",
+              "product_name": "Carrusel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "2",
+                "person_name": "Valentina Gil"
+              }
+            },
+            {
+              "task_id": "bf94e197-7548-40ce-a189-f66b02fd97e3",
+              "account_uuid": "3effd9e3-1ea6-4852-96ba-01aa3f348883",
+              "client_name": "Felicidad Martinez Manga",
+              "task_title": "SEO - Estrategia de SEO",
+              "product_name": "Estrategia de SEO",
+              "is_feedback": true,
+              "product_category": "SEO",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "2",
+                "person_name": "Valentina Gil"
+              }
+            },
+            {
+              "task_id": "7352b163-55f2-46fd-8644-725cc066cdad",
+              "account_uuid": "54dcec0b-1bec-47d1-a2bf-633e36880456",
+              "client_name": "Amalia Nazar Herrera",
+              "task_title": "SEO - Estrategia de SEO",
+              "product_name": "Estrategia de SEO",
+              "is_feedback": true,
+              "product_category": "SEO",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "2",
+                "person_name": "Valentina Gil"
+              }
+            },
+            {
+              "task_id": "bc773f07-0aed-43f8-8fd1-b016bb879002",
+              "account_uuid": "8316c420-0d35-4d0f-b4d9-1a13ea82bd2e",
+              "client_name": "Patricia Paula Rodriguez Montaño",
+              "task_title": "RRSS - Story de Instagram",
+              "product_name": "Story de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "2",
+                "person_name": "Valentina Gil"
+              }
+            },
+            {
+              "task_id": "daeb1afd-8770-43df-b406-e2b8f9c57467",
+              "account_uuid": "bd437e76-7018-47d7-abda-1be65d8af6cc",
+              "client_name": "Sultana Benasuly Sabah",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "2",
+                "person_name": "Valentina Gil"
+              }
+            },
+            {
+              "task_id": "5f7ec6ac-bfea-413a-8d42-e045ee978f8e",
+              "account_uuid": "dab08692-afe3-4cfb-9bb6-deda5d05d1ee",
+              "client_name": "Apartaments Pleta Bona Sl",
+              "task_title": "GMB - Post de Noticias",
+              "product_name": "Post de Noticias",
+              "is_feedback": true,
+              "product_category": "GMB",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "2",
+                "person_name": "Valentina Gil"
+              }
+            },
+            {
+              "task_id": "674fdaf9-ca82-43de-bc22-e0b639b6a49e",
+              "account_uuid": "fd1c663b-1a43-4cea-9f09-fb43a476b044",
+              "client_name": "Elizabeth Andrea Ludueña",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "2",
+                "person_name": "Valentina Gil"
+              }
+            }
+          ]
+        },
+        {
+          "date": "2026-04-23",
+          "used_min": 0,
+          "task_count": 0,
+          "tasks": []
+        },
+        {
+          "date": "2026-04-24",
+          "used_min": 0,
+          "task_count": 0,
+          "tasks": []
+        },
+        {
+          "date": "2026-04-27",
+          "used_min": 0,
+          "task_count": 0,
+          "tasks": []
+        },
+        {
+          "date": "2026-04-28",
+          "used_min": 0,
+          "task_count": 0,
+          "tasks": []
+        }
+      ],
+      "total_min": 0,
+      "total_tasks": 18,
+      "clients": [
+        "Maria Reyna",
+        "Maria Valero",
+        "Pau",
+        "Galyna Keyvan Ivasyuk",
+        "Paloma Ripolles",
+        "Felicidad Martinez Manga",
+        "Amalia Nazar Herrera",
+        "Patricia Paula Rodriguez Montaño",
+        "Sultana Benasuly Sabah",
+        "Apartaments Pleta Bona Sl",
+        "Elizabeth Andrea Ludueña"
+      ]
+    },
+    {
+      "person_id": "3",
+      "person_name": "Julian Salazar",
+      "role": "Content_Specialist",
+      "work_type": "feedback",
+      "capacity_min": 510,
+      "days": [
+        {
+          "date": "2026-04-22",
+          "used_min": 0,
+          "task_count": 17,
+          "tasks": [
+            {
+              "task_id": "e84aa679-638e-4567-aa76-28e3b0787450",
+              "account_uuid": "26d6d4a1-e071-4cc2-b94c-265c33095e06",
+              "client_name": "Dario Cuesta Jimenez",
+              "task_title": "GMB - Post de Noticias",
+              "product_name": "Post de Noticias",
+              "is_feedback": true,
+              "product_category": "GMB",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "3",
+                "person_name": "Julian Salazar"
+              }
+            },
+            {
+              "task_id": "61ebfb98-422e-4f00-a661-f8d0a0b461a8",
+              "account_uuid": "26d6d4a1-e071-4cc2-b94c-265c33095e06",
+              "client_name": "Dario Cuesta Jimenez",
+              "task_title": "GMB - Post de Noticias",
+              "product_name": "Post de Noticias",
+              "is_feedback": true,
+              "product_category": "GMB",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "3",
+                "person_name": "Julian Salazar"
+              }
+            },
+            {
+              "task_id": "9696d9d2-d077-4c19-a876-ab3fa762dec2",
+              "account_uuid": "26d6d4a1-e071-4cc2-b94c-265c33095e06",
+              "client_name": "Dario Cuesta Jimenez",
+              "task_title": "RRSS - Reel de Instagram",
+              "product_name": "Reel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "3",
+                "person_name": "Julian Salazar"
+              }
+            },
+            {
+              "task_id": "750cf457-90e7-4a02-8783-3e3df43df28d",
+              "account_uuid": "26d6d4a1-e071-4cc2-b94c-265c33095e06",
+              "client_name": "Dario Cuesta Jimenez",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "3",
+                "person_name": "Julian Salazar"
+              }
+            },
+            {
+              "task_id": "f2865be9-d0da-4e47-8d19-6bc3952aa4aa",
+              "account_uuid": "26d6d4a1-e071-4cc2-b94c-265c33095e06",
+              "client_name": "Dario Cuesta Jimenez",
+              "task_title": "RRSS - Story de Instagram",
+              "product_name": "Story de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "3",
+                "person_name": "Julian Salazar"
+              }
+            },
+            {
+              "task_id": "415b82f0-345c-4a2b-98dd-e1c4c2a8fa65",
+              "account_uuid": "c6882695-73b7-43ea-a0ff-2318b59a5b11",
+              "client_name": "Agatha Varela",
+              "task_title": "RRSS - Reel de Instagram",
+              "product_name": "Reel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "3",
+                "person_name": "Julian Salazar"
+              }
+            },
+            {
+              "task_id": "7aab4fc3-bb92-4c12-bff6-77a2dd63c49a",
+              "account_uuid": "c6882695-73b7-43ea-a0ff-2318b59a5b11",
+              "client_name": "Agatha Varela",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "3",
+                "person_name": "Julian Salazar"
+              }
+            },
+            {
+              "task_id": "54808f6f-39f9-4d52-ae99-38104b52e86a",
+              "account_uuid": "c6882695-73b7-43ea-a0ff-2318b59a5b11",
+              "client_name": "Agatha Varela",
+              "task_title": "RRSS - Reel de Instagram",
+              "product_name": "Reel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "3",
+                "person_name": "Julian Salazar"
+              }
+            },
+            {
+              "task_id": "c46524d0-71ea-4690-b11b-768dc350b23d",
+              "account_uuid": "9ed81402-e465-4cff-a9e1-dfd74bc51559",
+              "client_name": "Bella",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "3",
+                "person_name": "Julian Salazar"
+              }
+            },
+            {
+              "task_id": "46d874b1-a1ba-4400-b0fa-48a605ef1c7c",
+              "account_uuid": "9ed81402-e465-4cff-a9e1-dfd74bc51559",
+              "client_name": "Bella",
+              "task_title": "RRSS - Story de Instagram",
+              "product_name": "Story de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "3",
+                "person_name": "Julian Salazar"
+              }
+            },
+            {
+              "task_id": "105382d2-414d-4443-bce3-ccd160ec12d4",
+              "account_uuid": "296b36da-8c90-4221-ada0-182f320f14ef",
+              "client_name": "Natalia Curonisy",
+              "task_title": "RRSS - Story de Instagram",
+              "product_name": "Story de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "3",
+                "person_name": "Julian Salazar"
+              }
+            },
+            {
+              "task_id": "2499a8e3-73c4-4def-a84a-2d7b563b46be",
+              "account_uuid": "3576c69b-8ffb-48d3-9103-506b521e3221",
+              "client_name": "Laura Carasusán Barcelona",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "3",
+                "person_name": "Julian Salazar"
+              }
+            },
+            {
+              "task_id": "8e28662f-c901-4849-9f67-c712d0f051fc",
+              "account_uuid": "4345f914-2d5d-4179-afa0-1ff1921c44f3",
+              "client_name": "Mireia García",
+              "task_title": "RRSS - Reel de Instagram",
+              "product_name": "Reel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "3",
+                "person_name": "Julian Salazar"
+              }
+            },
+            {
+              "task_id": "969f8974-8e30-4fe0-800e-23a95cca2c93",
+              "account_uuid": "878e9eab-d7a5-4725-acac-7a59e13f148a",
+              "client_name": "Maria Teresa Rodriguez Cruz",
+              "task_title": "RRSS - Story de Instagram",
+              "product_name": "Story de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "3",
+                "person_name": "Julian Salazar"
+              }
+            },
+            {
+              "task_id": "8c2c62e2-b737-4745-9538-c42c72c37577",
+              "account_uuid": "8f9ad548-dcb3-4b46-bc5e-fadcbbb73643",
+              "client_name": "Sonia",
+              "task_title": "RRSS - Reel de Instagram",
+              "product_name": "Reel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "3",
+                "person_name": "Julian Salazar"
+              }
+            },
+            {
+              "task_id": "585e7d30-be55-4145-90dd-9eeb270c1f17",
+              "account_uuid": "c6942c11-ea9c-4e7c-944d-c5d9c399d869",
+              "client_name": "Marta Madre Martinez",
+              "task_title": "SEO - ESTRATEGIA",
+              "product_name": "ESTRATEGIA",
+              "is_feedback": true,
+              "product_category": "SEO",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "3",
+                "person_name": "Julian Salazar"
+              }
+            },
+            {
+              "task_id": "8a049d0f-b3d5-4e8e-86e4-7f4eac9c8651",
+              "account_uuid": "df34e30e-ef96-4266-bffc-44ef1540db35",
+              "client_name": "Elizabeth Campo",
+              "task_title": "RRSS - Reel de Instagram",
+              "product_name": "Reel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "3",
+                "person_name": "Julian Salazar"
+              }
+            }
+          ]
+        },
+        {
+          "date": "2026-04-23",
+          "used_min": 0,
+          "task_count": 0,
+          "tasks": []
+        },
+        {
+          "date": "2026-04-24",
+          "used_min": 0,
+          "task_count": 0,
+          "tasks": []
+        },
+        {
+          "date": "2026-04-27",
+          "used_min": 0,
+          "task_count": 0,
+          "tasks": []
+        },
+        {
+          "date": "2026-04-28",
+          "used_min": 0,
+          "task_count": 0,
+          "tasks": []
+        }
+      ],
+      "total_min": 0,
+      "total_tasks": 17,
+      "clients": [
+        "Dario Cuesta Jimenez",
+        "Agatha Varela",
+        "Bella",
+        "Natalia Curonisy",
+        "Laura Carasusán Barcelona",
+        "Mireia García",
+        "Maria Teresa Rodriguez Cruz",
+        "Sonia",
+        "Marta Madre Martinez",
+        "Elizabeth Campo"
+      ]
+    },
+    {
+      "person_id": "4",
+      "person_name": "Maria del mar hernandez",
+      "role": "Content_Specialist",
+      "work_type": "feedback",
+      "capacity_min": 510,
+      "days": [
+        {
+          "date": "2026-04-22",
+          "used_min": 0,
+          "task_count": 15,
+          "tasks": [
+            {
+              "task_id": "955d2f6e-2153-4c78-828f-27e9425fe89b",
+              "account_uuid": "eb55b52c-6bb0-44f0-b825-14976a7861b1",
+              "client_name": "In Life Projects Sl",
+              "task_title": "RRSS - Story de Instagram",
+              "product_name": "Story de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "5",
+                "person_name": "Angie Ramos"
+              }
+            },
+            {
+              "task_id": "f0c75b47-939a-45a6-acf7-64d0cffb966d",
+              "account_uuid": "eb55b52c-6bb0-44f0-b825-14976a7861b1",
+              "client_name": "In Life Projects Sl",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "5",
+                "person_name": "Angie Ramos"
+              }
+            },
+            {
+              "task_id": "7619d6c6-e675-4114-9961-98c64147f1b5",
+              "account_uuid": "eb55b52c-6bb0-44f0-b825-14976a7861b1",
+              "client_name": "In Life Projects Sl",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "5",
+                "person_name": "Angie Ramos"
+              }
+            },
+            {
+              "task_id": "8c7c63a5-f194-4174-9605-b784ce6b2373",
+              "account_uuid": "eb55b52c-6bb0-44f0-b825-14976a7861b1",
+              "client_name": "In Life Projects Sl",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "5",
+                "person_name": "Angie Ramos"
+              }
+            },
+            {
+              "task_id": "5fc63099-28ef-46ad-af2a-f19c6826ca64",
+              "account_uuid": "eb55b52c-6bb0-44f0-b825-14976a7861b1",
+              "client_name": "In Life Projects Sl",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "5",
+                "person_name": "Angie Ramos"
+              }
+            },
+            {
+              "task_id": "e1b69987-1750-4ba9-9af1-3b5f5c7e143b",
+              "account_uuid": "28d26437-fb8e-48fd-9ac8-b568c1babda9",
+              "client_name": "Tuscany Adquisiciones Sl",
+              "task_title": "SEO - Estrategia de SEO",
+              "product_name": "Estrategia de SEO",
+              "is_feedback": true,
+              "product_category": "SEO",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "5",
+                "person_name": "Angie Ramos"
+              }
+            },
+            {
+              "task_id": "1c228e60-1a41-40db-858e-64fa7858ebf2",
+              "account_uuid": "28d26437-fb8e-48fd-9ac8-b568c1babda9",
+              "client_name": "Tuscany Adquisiciones Sl",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "5",
+                "person_name": "Angie Ramos"
+              }
+            },
+            {
+              "task_id": "7a53b5cd-bf61-4051-9a36-120af216a82f",
+              "account_uuid": "337024d2-b884-4fb6-9012-518420907e45",
+              "client_name": "Carolina",
+              "task_title": "RRSS - Carrusel de Instagram",
+              "product_name": "Carrusel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "5",
+                "person_name": "Angie Ramos"
+              }
+            },
+            {
+              "task_id": "1c75405f-a2fb-4f17-af2d-06b99233c0ee",
+              "account_uuid": "337024d2-b884-4fb6-9012-518420907e45",
+              "client_name": "Carolina",
+              "task_title": "RRSS - Carrusel de Instagram",
+              "product_name": "Carrusel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "5",
+                "person_name": "Angie Ramos"
+              }
+            },
+            {
+              "task_id": "eb72aad1-ee97-4ca1-a16e-0cd97d31da8b",
+              "account_uuid": "b727b4c9-db68-4807-91b5-a6cccfed9a9b",
+              "client_name": "Erika",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "5",
+                "person_name": "Angie Ramos"
+              }
+            },
+            {
+              "task_id": "9f1bd7e2-f5fb-4862-92c3-7cdc0a787719",
+              "account_uuid": "b727b4c9-db68-4807-91b5-a6cccfed9a9b",
+              "client_name": "Erika",
+              "task_title": "RRSS - Story de Instagram",
+              "product_name": "Story de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "5",
+                "person_name": "Angie Ramos"
+              }
+            },
+            {
+              "task_id": "fbaf5be1-a591-45cd-bfc2-a0da3d41a429",
+              "account_uuid": "5e57b124-b00f-4e93-94ee-2f40c2d0df89",
+              "client_name": "Canovas Comunicació Creativa Sl",
+              "task_title": "RRSS - Reel de Instagram",
+              "product_name": "Reel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "5",
+                "person_name": "Angie Ramos"
+              }
+            },
+            {
+              "task_id": "f651f23c-3855-4043-a394-8e0ab331c428",
+              "account_uuid": "94e03762-c859-41ea-b606-547e3eb16f22",
+              "client_name": "Mariloli",
+              "task_title": "RRSS - Carrusel de Instagram",
+              "product_name": "Carrusel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "5",
+                "person_name": "Angie Ramos"
+              }
+            },
+            {
+              "task_id": "ed23d68f-8708-4017-8905-71d757be5fc3",
+              "account_uuid": "cfb97e5e-723f-4657-934b-7bdc124b8cc8",
+              "client_name": "Vlegalworld Solutions Sl",
+              "task_title": "SEO - Estrategia de SEO",
+              "product_name": "Estrategia de SEO",
+              "is_feedback": true,
+              "product_category": "SEO",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "5",
+                "person_name": "Angie Ramos"
+              }
+            },
+            {
+              "task_id": "d4f06518-8d5b-4c4e-860f-cf4746492cb7",
+              "account_uuid": "f189b7aa-912b-4d46-beaf-8b74b8aa8a81",
+              "client_name": "Carolina Honores",
+              "task_title": "SEO - Estrategia de SEO",
+              "product_name": "Estrategia de SEO",
+              "is_feedback": true,
+              "product_category": "SEO",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "5",
+                "person_name": "Angie Ramos"
+              }
+            }
+          ]
+        },
+        {
+          "date": "2026-04-23",
+          "used_min": 0,
+          "task_count": 0,
+          "tasks": []
+        },
+        {
+          "date": "2026-04-24",
+          "used_min": 0,
+          "task_count": 0,
+          "tasks": []
+        },
+        {
+          "date": "2026-04-27",
+          "used_min": 0,
+          "task_count": 0,
+          "tasks": []
+        },
+        {
+          "date": "2026-04-28",
+          "used_min": 0,
+          "task_count": 0,
+          "tasks": []
+        }
+      ],
+      "total_min": 0,
+      "total_tasks": 15,
+      "clients": [
+        "In Life Projects Sl",
+        "Tuscany Adquisiciones Sl",
+        "Carolina",
+        "Erika",
+        "Canovas Comunicació Creativa Sl",
+        "Mariloli",
+        "Vlegalworld Solutions Sl",
+        "Carolina Honores"
+      ]
+    },
+    {
+      "person_id": "15",
+      "person_name": "Alison De Pablos",
+      "role": "Content_Specialist",
+      "work_type": "feedback",
+      "capacity_min": 510,
+      "days": [
+        {
+          "date": "2026-04-22",
+          "used_min": 0,
+          "task_count": 23,
+          "tasks": [
+            {
+              "task_id": "a76ee2e6-10b9-4d97-a6d1-b36a4766a15c",
+              "account_uuid": "f09a85e8-59a3-4a30-b684-b55717c59bf4",
+              "client_name": "Lucdivine",
+              "task_title": "RRSS - Reel de Instagram",
+              "product_name": "Reel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "5",
+                "person_name": "Angie Ramos"
+              }
+            },
+            {
+              "task_id": "b244c3b3-3561-43f3-8fc4-516d31b131f8",
+              "account_uuid": "f09a85e8-59a3-4a30-b684-b55717c59bf4",
+              "client_name": "Lucdivine",
+              "task_title": "RRSS - Reel de Instagram",
+              "product_name": "Reel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "5",
+                "person_name": "Angie Ramos"
+              }
+            },
+            {
+              "task_id": "3feba940-c721-4646-9512-fcc10992e793",
+              "account_uuid": "f09a85e8-59a3-4a30-b684-b55717c59bf4",
+              "client_name": "Lucdivine",
+              "task_title": "SEO - Estrategia de SEO",
+              "product_name": "Estrategia de SEO",
+              "is_feedback": true,
+              "product_category": "SEO",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "5",
+                "person_name": "Angie Ramos"
+              }
+            },
+            {
+              "task_id": "1d3a4a33-5527-4ba2-85d8-3d61b3e527f4",
+              "account_uuid": "f09a85e8-59a3-4a30-b684-b55717c59bf4",
+              "client_name": "Lucdivine",
+              "task_title": "RRSS - Reel de Instagram",
+              "product_name": "Reel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "5",
+                "person_name": "Angie Ramos"
+              }
+            },
+            {
+              "task_id": "f363f169-ffad-412d-a096-9a6ff98ba568",
+              "account_uuid": "f09a85e8-59a3-4a30-b684-b55717c59bf4",
+              "client_name": "Lucdivine",
+              "task_title": "RRSS - Carrusel de Instagram",
+              "product_name": "Carrusel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "5",
+                "person_name": "Angie Ramos"
+              }
+            },
+            {
+              "task_id": "36dc885f-bfd1-4d7e-8aec-43d4a16c480d",
+              "account_uuid": "1a85fcf4-c74e-4d4d-b2f3-b73022cf3388",
+              "client_name": "Adelaida Rubio Pastor",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "15",
+                "person_name": "Alison De Pablos"
+              }
+            },
+            {
+              "task_id": "34cfcd16-de19-490e-8963-8a18fb20ee78",
+              "account_uuid": "1a85fcf4-c74e-4d4d-b2f3-b73022cf3388",
+              "client_name": "Adelaida Rubio Pastor",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "15",
+                "person_name": "Alison De Pablos"
+              }
+            },
+            {
+              "task_id": "0f28017e-ee7f-494e-9499-56984ce03a5d",
+              "account_uuid": "1a85fcf4-c74e-4d4d-b2f3-b73022cf3388",
+              "client_name": "Adelaida Rubio Pastor",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "15",
+                "person_name": "Alison De Pablos"
+              }
+            },
+            {
+              "task_id": "19dcb132-4cea-46bb-88d4-4057b69fcd92",
+              "account_uuid": "1a85fcf4-c74e-4d4d-b2f3-b73022cf3388",
+              "client_name": "Adelaida Rubio Pastor",
+              "task_title": "RRSS - Story de Instagram",
+              "product_name": "Story de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "15",
+                "person_name": "Alison De Pablos"
+              }
+            },
+            {
+              "task_id": "81015094-3ed6-4aca-b0e4-463851c4dd55",
+              "account_uuid": "56890f41-f1f8-40d6-9ac4-95ae01c3652e",
+              "client_name": "Neurofisio Cantabria",
+              "task_title": "SEO - Enlaces en directorios y periódicos digitales (Acciones SEO Off-Page)",
+              "product_name": "Artículos SEO Off Page",
+              "is_feedback": true,
+              "product_category": "SEO",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "15",
+                "person_name": "Alison De Pablos"
+              }
+            },
+            {
+              "task_id": "b0a9e39a-8cf6-436b-a6c4-ffff364b35c2",
+              "account_uuid": "56890f41-f1f8-40d6-9ac4-95ae01c3652e",
+              "client_name": "Neurofisio Cantabria",
+              "task_title": "GMB - Post de Noticias",
+              "product_name": "Post de Noticias",
+              "is_feedback": true,
+              "product_category": "GMB",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "15",
+                "person_name": "Alison De Pablos"
+              }
+            },
+            {
+              "task_id": "e362ba43-9141-4f17-aec5-c1b05f56019e",
+              "account_uuid": "56890f41-f1f8-40d6-9ac4-95ae01c3652e",
+              "client_name": "Neurofisio Cantabria",
+              "task_title": "GMB - Post de Noticias",
+              "product_name": "Post de Noticias",
+              "is_feedback": true,
+              "product_category": "GMB",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "15",
+                "person_name": "Alison De Pablos"
+              }
+            },
+            {
+              "task_id": "13c2061c-89ea-4765-b16c-f942d05ddd80",
+              "account_uuid": "56890f41-f1f8-40d6-9ac4-95ae01c3652e",
+              "client_name": "Neurofisio Cantabria",
+              "task_title": "GMB - Post de Noticias",
+              "product_name": "Post de Noticias",
+              "is_feedback": true,
+              "product_category": "GMB",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "15",
+                "person_name": "Alison De Pablos"
+              }
+            },
+            {
+              "task_id": "0efcba7e-9fc9-4d82-b143-c84ee8199beb",
+              "account_uuid": "aebf24e2-f736-423f-8a01-f10d75004df7",
+              "client_name": "Sandra Castro",
+              "task_title": "RRSS - Carrusel de Instagram",
+              "product_name": "Carrusel de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "15",
+                "person_name": "Alison De Pablos"
+              }
+            },
+            {
+              "task_id": "e0638243-00b4-4d4d-a78d-170f4e1be327",
+              "account_uuid": "aebf24e2-f736-423f-8a01-f10d75004df7",
+              "client_name": "Sandra Castro",
+              "task_title": "SEO - Acciones SEO On-Page",
+              "product_name": "Acciones SEO On-Page",
+              "is_feedback": true,
+              "product_category": "SEO",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "15",
+                "person_name": "Alison De Pablos"
+              }
+            },
+            {
+              "task_id": "f30f083d-5e15-4439-993b-839901e4d8a8",
+              "account_uuid": "b0462667-8818-491a-95ac-b2807d6e1259",
+              "client_name": "Tapiceria Extremadura",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "15",
+                "person_name": "Alison De Pablos"
+              }
+            },
+            {
+              "task_id": "30a177fd-38c4-4e02-95fa-8bc197e5dcf5",
+              "account_uuid": "b0462667-8818-491a-95ac-b2807d6e1259",
+              "client_name": "Tapiceria Extremadura",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "15",
+                "person_name": "Alison De Pablos"
+              }
+            },
+            {
+              "task_id": "732f05d1-cc3c-4d66-b17a-d1a30c089e53",
+              "account_uuid": "3811570a-1c7b-484c-85b9-8d565c5f2388",
+              "client_name": "Alquimia De La Prosperidad",
+              "task_title": "SEO - Estrategia de SEO",
+              "product_name": "Estrategia de SEO",
+              "is_feedback": true,
+              "product_category": "SEO",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "15",
+                "person_name": "Alison De Pablos"
+              }
+            },
+            {
+              "task_id": "c92ed785-2143-4494-8ec9-246f04627746",
+              "account_uuid": "6c7815a0-0a58-4961-baf2-e0cbd8472b65",
+              "client_name": "VEGA GIL MARCOS",
+              "task_title": "SEO - Estrategia de SEO",
+              "product_name": "Estrategia de SEO",
+              "is_feedback": true,
+              "product_category": "SEO",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "15",
+                "person_name": "Alison De Pablos"
+              }
+            },
+            {
+              "task_id": "b810f863-ca06-475e-b2ea-0fa51889289d",
+              "account_uuid": "b8edbf07-cdf4-4058-af85-970d4b15b248",
+              "client_name": "Juan Antonio",
+              "task_title": "SEO - Acciones SEO On-Page",
+              "product_name": "Acciones SEO On-Page",
+              "is_feedback": true,
+              "product_category": "SEO",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "15",
+                "person_name": "Alison De Pablos"
+              }
+            },
+            {
+              "task_id": "52b516b1-335a-423f-86ae-9f560f0d2354",
+              "account_uuid": "c9a93f8c-b09c-4cc2-9a51-4ce7da74ab06",
+              "client_name": "Noemí Álvarez Guzmán",
+              "task_title": "RRSS - Story de Instagram",
+              "product_name": "Story de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "15",
+                "person_name": "Alison De Pablos"
+              }
+            },
+            {
+              "task_id": "f808aa3e-cfa7-41e7-883b-d4be7cda26d1",
+              "account_uuid": "d999724c-dcb6-46ee-9f79-be688cdaf7f8",
+              "client_name": "Caterina Moltó",
+              "task_title": "RRSS - Post de Instagram",
+              "product_name": "Post de Instagram",
+              "is_feedback": true,
+              "product_category": "RRSS",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "15",
+                "person_name": "Alison De Pablos"
+              }
+            },
+            {
+              "task_id": "12a4c1bd-ef2c-44cb-a367-feaeb9a82a99",
+              "account_uuid": "fa6cd020-d04a-4197-b2a2-4b3d63e87825",
+              "client_name": "Antoni Grau Giner",
+              "task_title": "SEO - Estrategia de SEO",
+              "product_name": "Estrategia de SEO",
+              "is_feedback": true,
+              "product_category": "SEO",
+              "role": "Content_Specialist",
+              "minutes": 0,
+              "date": "2026-04-22",
+              "prior_assignee": {
+                "person_id": "15",
+                "person_name": "Alison De Pablos"
+              }
+            }
+          ]
+        },
+        {
+          "date": "2026-04-23",
+          "used_min": 0,
+          "task_count": 0,
+          "tasks": []
+        },
+        {
+          "date": "2026-04-24",
+          "used_min": 0,
+          "task_count": 0,
+          "tasks": []
+        },
+        {
+          "date": "2026-04-27",
+          "used_min": 0,
+          "task_count": 0,
+          "tasks": []
+        },
+        {
+          "date": "2026-04-28",
+          "used_min": 0,
+          "task_count": 0,
+          "tasks": []
+        }
+      ],
+      "total_min": 0,
+      "total_tasks": 23,
+      "clients": [
+        "Lucdivine",
+        "Adelaida Rubio Pastor",
+        "Neurofisio Cantabria",
+        "Sandra Castro",
+        "Tapiceria Extremadura",
+        "Alquimia De La Prosperidad",
+        "VEGA GIL MARCOS",
+        "Juan Antonio",
+        "Noemí Álvarez Guzmán",
+        "Caterina Moltó",
+        "Antoni Grau Giner"
+      ]
+    }
+  ],
+  "unassigned": [],
+  "feedback_metrics": {
+    "total_tasks": 92,
+    "unique_clients": 50,
+    "by_category": {
+      "RRSS": 62,
+      "SEO": 21,
+      "GMB": 9
+    },
+    "by_product": {
+      "Post de Instagram": 24,
+      "Carrusel de Instagram": 10,
+      "Story de Instagram": 15,
+      "Estrategia de SEO": 13,
+      "SEO en blog": 1,
+      "Post de Noticias": 9,
+      "Reel de Instagram": 13,
+      "ESTRATEGIA": 2,
+      "Artículos SEO Off Page": 1,
+      "Acciones SEO On-Page": 4
+    }
+  },
+  "summary": {
+    "total": 57373,
+    "assigned": 92,
+    "unassigned": 0,
+    "total_min": 0,
+    "feedback_tasks": 92,
+    "production_tasks": 57281
+  },
+  "generated_at": "2026-04-22T21:14:32.798Z",
+  "deadline": null
+}

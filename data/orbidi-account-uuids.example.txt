@@ -1,0 +1,12 @@
+# Copia este archivo a: data/orbidi-account-uuids.txt
+# (orbidi-account-uuids.txt está en .gitignore — un UUID de cuenta Orbidi por línea.)
+#
+# El servidor usa, en orden:
+#   1) ORBIDI_ACCOUNT_UUIDS_FILE (ruta absoluta o relativa al proyecto)
+#   2) data/orbidi-account-uuids.txt
+#   3) ORBIDI_ACCOUNT_UUIDS (lista separada por comas o saltos de línea)
+#   4) src/data/accountUuids.ts (fallback histórico)
+#
+# Ejemplo (sustituye por UUIDs reales de producción):
+# a1b2c3d4-e5f6-7890-abcd-ef1234567890
+# b2c3d4e5-f6a7-8901-bcde-f12345678901

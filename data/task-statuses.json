@@ -1,0 +1,128 @@
+{
+  "a03c02fc-6f18-461c-9cf0-687ed75f5df9": {
+    "status": "in_progress",
+    "closedAt": null,
+    "userId": "4",
+    "updatedAt": "2026-04-22T21:48:23.901Z"
+  },
+  "e8595d01-66c0-4931-a9b0-b20e1bdf47f1": {
+    "status": "done",
+    "closedAt": "2026-04-16T17:16:51.355Z",
+    "userId": "4",
+    "updatedAt": "2026-04-22T21:48:23.908Z"
+  },
+  "b34a6a75-2dc1-435a-8130-fe0f44264f75": {
+    "status": "done",
+    "closedAt": "2026-04-16T17:16:52.315Z",
+    "userId": "4",
+    "updatedAt": "2026-04-22T21:48:23.910Z"
+  },
+  "70e92d01-c3dd-400b-a6a2-45a7f423c29c": {
+    "status": "done",
+    "closedAt": "2026-04-16T17:24:38.807Z",
+    "userId": "3",
+    "updatedAt": "2026-04-16T17:24:38.811Z"
+  },
+  "b94c6314-829c-4197-b28b-d468333a1044": {
+    "status": "done",
+    "closedAt": "2026-04-16T17:24:39.983Z",
+    "userId": "3",
+    "updatedAt": "2026-04-16T17:24:39.986Z"
+  },
+  "dfee2be3-5b59-4b52-aeb6-be2ecb752a66": {
+    "status": "done",
+    "closedAt": "2026-04-16T17:24:41.082Z",
+    "userId": "3",
+    "updatedAt": "2026-04-16T17:24:41.085Z"
+  },
+  "767761ac-1c1b-4a7e-ad45-1860b3142529": {
+    "status": "done",
+    "closedAt": "2026-04-16T17:24:42.032Z",
+    "userId": "3",
+    "updatedAt": "2026-04-16T17:24:42.036Z"
+  },
+  "fd19c7be-b275-417e-a65e-5f56eb5ffac9": {
+    "status": "done",
+    "closedAt": "2026-04-16T17:24:42.990Z",
+    "userId": "3",
+    "updatedAt": "2026-04-16T17:24:42.994Z"
+  },
+  "cc558797-20a7-473c-8464-223348d94058": {
+    "status": "done",
+    "closedAt": "2026-04-16T17:24:43.986Z",
+    "userId": "3",
+    "updatedAt": "2026-04-16T17:24:43.990Z"
+  },
+  "0a701d51-bf8e-483b-821d-ce3d95fe15df": {
+    "status": "done",
+    "closedAt": "2026-04-16T17:24:44.932Z",
+    "userId": "3",
+    "updatedAt": "2026-04-16T17:24:44.936Z"
+  },
+  "3561b0c7-b12d-459f-b1a3-0628c04fa53a": {
+    "status": "done",
+    "closedAt": "2026-04-16T17:24:45.982Z",
+    "userId": "3",
+    "updatedAt": "2026-04-16T17:24:45.986Z"
+  },
+  "d053e76a-aa8d-48c2-9380-c6fecde698c7": {
+    "status": "done",
+    "closedAt": "2026-04-16T17:24:46.903Z",
+    "userId": "3",
+    "updatedAt": "2026-04-16T17:24:46.908Z"
+  },
+  "b8774cc4-761b-47c6-a49e-adaf0870866c": {
+    "status": "done",
+    "closedAt": "2026-04-16T17:24:49.526Z",
+    "userId": "3",
+    "updatedAt": "2026-04-16T17:24:49.530Z"
+  },
+  "cba4c725-1275-4a6c-bdd7-230a47cb3a17": {
+    "status": "in_progress",
+    "closedAt": null,
+    "userId": "3",
+    "updatedAt": "2026-04-16T17:24:51.003Z"
+  },
+  "f0d00115-f4fc-435d-ba4c-f87104adbec2": {
+    "status": "in_progress",
+    "closedAt": null,
+    "userId": "3",
+    "updatedAt": "2026-04-16T17:24:51.757Z"
+  },
+  "d6200f97-7e8a-4ca7-9d9f-00c287437596": {
+    "status": "in_progress",
+    "closedAt": null,
+    "userId": "3",
+    "updatedAt": "2026-04-16T17:24:52.083Z"
+  },
+  "e2d150ab-fd1d-4472-aa9a-7fca4e929327": {
+    "status": "done",
+    "closedAt": "2026-04-16T17:26:22.325Z",
+    "userId": "4",
+    "updatedAt": "2026-04-22T21:48:23.911Z"
+  },
+  "f81c7833-7a93-41ab-910f-7804bbe7bbd5": {
+    "status": "done",
+    "closedAt": "2026-04-17T20:53:43.457Z",
+    "userId": "4",
+    "updatedAt": "2026-04-22T21:48:23.906Z"
+  },
+  "fdc71dc0-550e-49ff-b10b-a1a79a9fecfc": {
+    "status": "done",
+    "closedAt": "2026-04-20T16:50:00.281Z",
+    "userId": "4",
+    "updatedAt": "2026-04-22T21:48:23.905Z"
+  },
+  "test-qa-1776889199": {
+    "status": "in_progress",
+    "closedAt": null,
+    "userId": "3",
+    "updatedAt": "2026-04-22T20:19:59.576Z"
+  },
+  "fbaf5be1-a591-45cd-bfc2-a0da3d41a429": {
+    "status": "pending",
+    "closedAt": null,
+    "userId": "4",
+    "updatedAt": "2026-04-22T21:34:02.088Z"
+  }
+}

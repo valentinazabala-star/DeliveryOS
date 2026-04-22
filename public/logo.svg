@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 150" fill="none">
+  <!-- === D ICON MARK === -->
+  <!-- Left top bar -->
+  <rect x="8" y="10" width="20" height="40" fill="#1a1a1a"/>
+  <!-- Lime green accent square -->
+  <rect x="8" y="52" width="20" height="20" fill="#BEFF50"/>
+  <!-- Left bottom bar -->
+  <rect x="8" y="74" width="20" height="40" fill="#1a1a1a"/>
+  <!-- D outer shape: top flat → arc clockwise → bottom flat → back up -->
+  <path d="M28 10 L62 10 A54 57 0 0 1 62 124 L28 124 L28 110 L55 110 A38 40 0 0 0 55 14 L28 14 Z" fill="#1a1a1a"/>
+
+  <!-- === TEXT === -->
+  <!-- "elivery" black bold -->
+  <text x="100" y="108"
+    font-family="'Cal Sans', 'Montserrat', 'Arial Black', sans-serif"
+    font-size="92" font-weight="800" fill="#1a1a1a" letter-spacing="-2">elivery</text>
+
+  <!-- "OS" lime -->
+  <text x="438" y="108"
+    font-family="'Cal Sans', 'Montserrat', 'Arial Black', sans-serif"
+    font-size="92" font-weight="800" fill="#BEFF50" letter-spacing="-2">OS</text>
+
+  <!-- "by Orqestra" subtitle centered -->
+  <text x="310" y="140"
+    font-family="'Be Vietnam Pro', 'Arial', sans-serif"
+    font-size="18" font-weight="400" fill="#BEFF50" opacity="0.5"
+    text-anchor="middle" letter-spacing="1">by Orqestra</text>
+</svg>

@@ -1,13 +1,13 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/geist";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-    --font-heading: var(--font-sans);
-    --font-sans: 'Geist Variable', sans-serif;
+    --font-heading: 'Cal Sans', sans-serif;
+    --font-sans: 'Be Vietnam Pro', system-ui, sans-serif;
+    --font-mono: 'Be Vietnam Pro', monospace;
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -49,56 +49,39 @@
 }
 
 :root {
-    --background: #FFFFFF;
-    --foreground: #09090b;
-    --card: #FFFFFF;
-    --card-foreground: #09090b;
-    --popover: #FFFFFF;
-    --popover-foreground: #09090b;
+    --background: #f7f7f8;
+    --foreground: #0d0d0d;
+    --card: #ffffff;
+    --card-foreground: #0d0d0d;
+    --popover: #ffffff;
+    --popover-foreground: #0d0d0d;
     --primary: #BEFF50;
-    --primary-foreground: #09090b;
+    --primary-foreground: #0d0d0d;
     --secondary: #60259F;
-    --secondary-foreground: #FFFFFF;
-    --muted: #f4f4f5;
-    --muted-foreground: #71717a;
+    --secondary-foreground: #ffffff;
+    --muted: #efefef;
+    --muted-foreground: #888888;
     --accent: #BEFF50;
-    --accent-foreground: #09090b;
+    --accent-foreground: #0d0d0d;
     --destructive: oklch(0.577 0.245 27.325);
-    --border: #e4e4e7;
-    --input: #e4e4e7;
+    --border: #e8e8e8;
+    --input: #e8e8e8;
     --ring: #60259F;
-    --radius: 1.25rem;
-}
-
-.dark {
-    --background: #000000;
-    --foreground: #F5F5EB;
-    --card: #111111;
-    --card-foreground: #F5F5EB;
-    --popover: #111111;
-    --popover-foreground: #F5F5EB;
-    --primary: #BEFF50;
-    --primary-foreground: #000000;
-    --secondary: #60259F;
-    --secondary-foreground: #FFFFFF;
-    --muted: #222222;
-    --muted-foreground: #999999;
-    --accent: #BEFF50;
-    --accent-foreground: #000000;
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: #333333;
-    --input: #333333;
-    --ring: #BEFF50;
+    --radius: 0.875rem;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    }
+  }
   body {
     @apply bg-background text-foreground;
-    }
-  html {
-    @apply font-sans;
-    }
+    font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, [class*="CardTitle"], [class*="card-title"] {
+    font-family: 'Cal Sans', sans-serif;
+    font-style: normal;
+    letter-spacing: -0.03em;
+  }
 }

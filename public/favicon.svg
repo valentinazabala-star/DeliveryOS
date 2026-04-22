@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Top-left bar -->
+  <rect x="8" y="8" width="18" height="28" fill="#1a1a1a"/>
+  <!-- Lime green accent square -->
+  <rect x="8" y="38" width="18" height="18" fill="#BEFF50"/>
+  <!-- Bottom-left bar -->
+  <rect x="8" y="58" width="18" height="28" fill="#1a1a1a"/>
+  <!-- D curved body -->
+  <path d="M26 8 h16 a42 42 0 0 1 0 84 h-16 v-14 h12 a28 28 0 0 0 0-56 h-12 z" fill="#1a1a1a"/>
+</svg>
