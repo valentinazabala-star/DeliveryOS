@@ -928,7 +928,8 @@ async function startServer() {
     (async () => {
       try {
         console.log(`[incremental] Scanning ${missingUuids.length} missing UUIDs…`);
-        const TASK_CONCURRENCY = 30;
+        const TASK_CONCURRENCY = 15;  // gentle — avoids saturating Orbidi prodline
+        const BATCH_DELAY_MS   = 800; // 800ms pause between batches
         const accountsWithTasks = new Set<string>();
         const newTasks: any[] = [];
 
@@ -948,10 +949,12 @@ async function startServer() {
             } catch { return []; }
           }));
           newTasks.push(...results.flat());
+          // Polite delay between batches — keeps Prodline usable for everyone
+          await new Promise(r => setTimeout(r, BATCH_DELAY_MS));
         }
 
         // Fetch briefs for newly found accounts
-        const BRIEF_CONCURRENCY = 20;
+        const BRIEF_CONCURRENCY = 10;
         const newAccounts: any[] = [];
         const newAccountUuids = [...accountsWithTasks];
         for (let i = 0; i < newAccountUuids.length; i += BRIEF_CONCURRENCY) {
