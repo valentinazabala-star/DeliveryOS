@@ -251,23 +251,58 @@ function mapOrbidiTask(t: any, accountUuid: string) {
 const CACHE_FILE = path.join(DATA_DIR, "cache-snapshot.json");
 const CACHE_MAX_AGE_MS = 4 * 60 * 60 * 1000; // 4 hours — serve disk cache if fresher than this
 
-function saveCacheSnapshot(accounts: any[], tasks: any[], fetchedAt: number) {
+async function saveCacheSnapshot(accounts: any[], tasks: any[], fetchedAt: number) {
+  // Save to local file
   try {
     fs.writeFileSync(CACHE_FILE, JSON.stringify({ accounts, tasks, fetchedAt }), "utf-8");
-    console.log(`[cache] Snapshot saved: ${accounts.length} accounts, ${tasks.length} tasks.`);
+    console.log(`[cache] Snapshot saved locally: ${accounts.length} accounts, ${tasks.length} tasks.`);
   } catch (e: any) {
-    console.warn("[cache] Could not save snapshot:", e.message);
+    console.warn("[cache] Could not save local snapshot:", e.message);
+  }
+  // Also save to Supabase Storage for cross-deployment persistence
+  if (db) {
+    try {
+      const payload = JSON.stringify({ accounts, tasks, fetchedAt });
+      const blob = new Blob([payload], { type: "application/json" });
+      const { error } = await db.storage
+        .from("cache")
+        .upload("cache-snapshot.json", blob, { upsert: true, contentType: "application/json" });
+      if (error) console.warn("[cache] Supabase storage save failed:", error.message);
+      else console.log("[cache] Snapshot saved to Supabase Storage.");
+    } catch (e: any) {
+      console.warn("[cache] Supabase storage upload error:", e.message);
+    }
   }
 }
 
-function loadCacheSnapshot(): { accounts: any[]; tasks: any[]; fetchedAt: number } | null {
+async function loadCacheSnapshot(): Promise<{ accounts: any[]; tasks: any[]; fetchedAt: number } | null> {
+  // Try Supabase Storage first (survives Railway redeploys)
+  if (db) {
+    try {
+      const { data, error } = await db.storage.from("cache").download("cache-snapshot.json");
+      if (!error && data) {
+        const text = await data.text();
+        const raw = JSON.parse(text);
+        if (raw?.accounts && raw?.tasks && raw?.fetchedAt) {
+          const ageMin = Math.round((Date.now() - raw.fetchedAt) / 60000);
+          console.log(`[cache] Restored from Supabase Storage: ${raw.accounts.length} accounts, ${raw.tasks.length} tasks (${ageMin}min old).`);
+          // Also write locally for fast subsequent reads
+          try { fs.writeFileSync(CACHE_FILE, text, "utf-8"); } catch {}
+          return raw;
+        }
+      }
+    } catch (e: any) {
+      console.warn("[cache] Supabase storage load failed:", e.message);
+    }
+  }
+  // Fallback to local file
   try {
     if (!fs.existsSync(CACHE_FILE)) return null;
     const raw = JSON.parse(fs.readFileSync(CACHE_FILE, "utf-8"));
     if (!raw?.accounts || !raw?.tasks || !raw?.fetchedAt) return null;
     if (Date.now() - raw.fetchedAt > CACHE_MAX_AGE_MS) {
-      console.log(`[cache] Snapshot too old (${Math.round((Date.now() - raw.fetchedAt) / 60000)}min), will refresh.`);
-      return raw; // still return it so we can serve stale data while refreshing
+      console.log(`[cache] Local snapshot too old (${Math.round((Date.now() - raw.fetchedAt) / 60000)}min), will refresh.`);
+      return raw;
     }
     return raw;
   } catch { return null; }
@@ -287,7 +322,7 @@ function startAccountsInitialLoad(): void {
       const { tasks, accounts } = await fetchAllTasksAndAccounts();
       accountsCache = { data: accounts, fetchedAt: Date.now() };
       tasksAllCache = { data: tasks, fetchedAt: Date.now() };
-      saveCacheSnapshot(accounts, tasks, Date.now());
+      await saveCacheSnapshot(accounts, tasks, Date.now());
       console.log(`[accounts] Initial load done: ${accounts.length} accounts, ${tasks.length} tasks.`);
       // After first full load, start fast refresh cadence
       startFastRefreshSchedule();
@@ -307,7 +342,7 @@ function startAccountsBackgroundRefresh(): void {
       const { tasks, accounts } = await fetchAllTasksAndAccounts();
       accountsCache = { data: accounts, fetchedAt: Date.now() };
       tasksAllCache = { data: tasks, fetchedAt: Date.now() };
-      saveCacheSnapshot(accounts, tasks, Date.now());
+      await saveCacheSnapshot(accounts, tasks, Date.now());
       console.log(`[accounts] Background refresh done: ${accounts.length} accounts, ${tasks.length} tasks.`);
     } catch (e: any) {
       console.error("[accounts] Background refresh failed:", e?.message);
@@ -378,7 +413,7 @@ function startFastRefreshSchedule(): void {
       const { tasks, accounts } = await fetchKnownAccountsOnly();
       accountsCache = { data: accounts, fetchedAt: Date.now() };
       tasksAllCache = { data: tasks, fetchedAt: Date.now() };
-      saveCacheSnapshot(accounts, tasks, Date.now());
+      await saveCacheSnapshot(accounts, tasks, Date.now());
     } catch (e: any) {
       console.error("[fast-refresh] Failed:", e?.message);
     }
@@ -596,10 +631,10 @@ async function startServer() {
       // Stale tasks: trigger background FAST refresh (known accounts only — schedule handles nightly full scan)
       if (tasksAllCache && accountsCache && (Date.now() - tasksAllCache.fetchedAt) >= TASKS_TTL_MS && !tasksRefreshing) {
         tasksRefreshing = true;
-        fetchKnownAccountsOnly().then(({ tasks, accounts }) => {
+        fetchKnownAccountsOnly().then(async ({ tasks, accounts }) => {
           tasksAllCache = { data: tasks, fetchedAt: Date.now() };
           accountsCache = { data: accounts, fetchedAt: Date.now() };
-          saveCacheSnapshot(accounts, tasks, Date.now());
+          await saveCacheSnapshot(accounts, tasks, Date.now());
           console.log(`[tasks/all] Cache refreshed: ${tasks.length} tasks, ${accounts.length} accounts.`);
         }).catch(e => {
           console.error("[tasks/all] Background refresh failed:", e.message);
@@ -981,7 +1016,7 @@ async function startServer() {
   // --- Auth API: All accounts (server-side daily cache) ---
   // Warm cache on server start (non-blocking); same single-flight as /api/cache-status.
   // On startup: try to restore from disk snapshot first (avoids 30-min cold start after restart)
-  const snapshot = loadCacheSnapshot();
+  const snapshot = await loadCacheSnapshot();
   const now = Date.now();
   if (snapshot) {
     accountsCache = { data: snapshot.accounts, fetchedAt: snapshot.fetchedAt };
@@ -1014,7 +1049,7 @@ async function startServer() {
           const { tasks, accounts } = await fetchAllTasksAndAccounts();
           accountsCache = { data: accounts, fetchedAt: Date.now() };
           tasksAllCache = { data: tasks, fetchedAt: Date.now() };
-          saveCacheSnapshot(accounts, tasks, Date.now());
+          await saveCacheSnapshot(accounts, tasks, Date.now());
           console.log(`[nightly-rescan] Done: ${accounts.length} accounts, ${tasks.length} tasks.`);
         } catch (e: any) {
           console.error("[nightly-rescan] Failed:", e?.message);
