@@ -163,8 +163,8 @@ const ACCOUNT_BRIEF_FETCH_TIMEOUT_MS = Math.min(
 );
 /** Parallel Orbidi Auth requests per wave (default 40 ≈ 8 waves for 288 UUIDs vs 15×20 sequential). */
 const ACCOUNTS_FETCH_CONCURRENCY = Math.min(
-  96,
-  Math.max(8, Number(process.env.ORBIDI_ACCOUNTS_CONCURRENCY) || 40),
+  30,
+  Math.max(4, Number(process.env.ORBIDI_ACCOUNTS_CONCURRENCY) || 20),
 );
 
 function fetchWithTimeout(url: string, options: RequestInit = {}, timeoutMs = FETCH_TIMEOUT_MS): Promise<Response> {
@@ -364,7 +364,7 @@ async function fetchKnownAccountsOnly(): Promise<{ tasks: any[]; accounts: any[]
     : [];
   if (knownUuids.length === 0) return fetchAllTasksAndAccounts();
 
-  const TASK_CONCURRENCY = 150;
+  const TASK_CONCURRENCY = 30;
   const t0 = Date.now();
   const accountsWithTasks = new Set<string>();
   const allTasks: any[] = [];
@@ -434,7 +434,7 @@ const TASKS_TTL_MS = 30  * 60 * 1000; // 30 min
  */
 async function fetchAllTasksAndAccounts(): Promise<{ tasks: any[]; accounts: any[] }> {
   // Use higher concurrency for task scanning — most accounts return [] immediately
-  const TASK_CONCURRENCY = Math.min(150, Math.max(60, ACCOUNTS_FETCH_CONCURRENCY * 3));
+  const TASK_CONCURRENCY = Math.min(40, Math.max(10, ACCOUNTS_FETCH_CONCURRENCY * 2));
   const uuids = ORBIDI_ACCOUNT_UUID_LIST;
   const t0 = Date.now();
 
@@ -928,7 +928,7 @@ async function startServer() {
     (async () => {
       try {
         console.log(`[incremental] Scanning ${missingUuids.length} missing UUIDs…`);
-        const TASK_CONCURRENCY = 150;
+        const TASK_CONCURRENCY = 30;
         const accountsWithTasks = new Set<string>();
         const newTasks: any[] = [];
 
