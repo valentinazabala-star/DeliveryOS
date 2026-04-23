@@ -902,6 +902,16 @@ async function startServer() {
     res.json({ data: ORBIDI_ACCOUNT_UUID_LIST, source: ORBIDI_ACCOUNT_UUID_SOURCE, count: ORBIDI_ACCOUNT_UUID_LIST.length });
   });
 
+  // --- Admin: force full rescan of all 44k UUIDs ---
+  app.post("/api/admin/force-rescan", async (_req, res) => {
+    if (accountsInitialLoad) return res.json({ ok: false, error: "Initial load already in progress" });
+    console.log("[admin] Force full rescan triggered via API.");
+    accountsCache = null;
+    tasksAllCache = null;
+    startAccountsInitialLoad();
+    res.json({ ok: true, message: "Full rescan started (~80 min). Poll /api/cache-status for progress." });
+  });
+
   // --- Admin: discover all production accounts from Orbidi Django admin and hot-reload UUID list ---
   let syncInProgress = false;
   app.post("/api/admin/sync-accounts", async (_req, res) => {
