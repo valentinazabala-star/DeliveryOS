@@ -912,6 +912,27 @@ async function startServer() {
     res.json({ ok: true, message: "Full rescan started (~80 min). Poll /api/cache-status for progress." });
   });
 
+  // --- Admin: restore cache from Supabase Storage snapshot immediately ---
+  app.post("/api/admin/restore-snapshot", async (_req, res) => {
+    if (!db) return res.status(500).json({ ok: false, error: "Supabase not configured" });
+    try {
+      const { data, error } = await db.storage.from("cache").download("cache-snapshot.json");
+      if (error || !data) return res.status(404).json({ ok: false, error: "No snapshot in Supabase Storage" });
+      const text = await data.text();
+      const raw = JSON.parse(text);
+      if (!raw?.accounts?.length || !raw?.tasks?.length) {
+        return res.status(404).json({ ok: false, error: "Snapshot empty or invalid" });
+      }
+      accountsCache = { data: raw.accounts, fetchedAt: raw.fetchedAt };
+      tasksAllCache = { data: raw.tasks,    fetchedAt: raw.fetchedAt };
+      const ageMin = Math.round((Date.now() - raw.fetchedAt) / 60000);
+      console.log(`[admin] Snapshot restored: ${raw.accounts.length} accounts, ${raw.tasks.length} tasks (${ageMin}min old).`);
+      res.json({ ok: true, accounts: raw.accounts.length, tasks: raw.tasks.length, age_min: ageMin });
+    } catch (e: any) {
+      res.status(500).json({ ok: false, error: e.message });
+    }
+  });
+
   // --- Admin: discover all production accounts from Orbidi Django admin and hot-reload UUID list ---
   let syncInProgress = false;
   app.post("/api/admin/sync-accounts", async (_req, res) => {
