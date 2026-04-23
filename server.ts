@@ -4,6 +4,7 @@ import path from "path";
 import cors from "cors";
 import fs from "fs";
 import "dotenv/config";
+import { createClient } from "@supabase/supabase-js";
 import type { RequestHandler } from "express";
 import { ACCOUNT_UUIDS as BAKED_ACCOUNT_UUIDS } from "./src/data/accountUuids";
 import {
@@ -27,7 +28,13 @@ import {
   buildClearSessionCookie,
 } from "./authSession";
 
-// ── Persistent file-based store helpers ────────────────────────────────────────
+// ── Supabase client (server-side, service role if available, else anon) ──────────
+const SUPABASE_URL  = process.env.SUPABASE_URL  || process.env.VITE_SUPABASE_URL  || "";
+const SUPABASE_KEY  = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY || "";
+const db = SUPABASE_URL && SUPABASE_KEY ? createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+if (!db) console.warn("[supabase] No credentials — falling back to local JSON files.");
+
+// ── Persistent file-based store helpers (fallback when Supabase unavailable) ────
 const DATA_DIR = path.resolve("./data");
 if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
 
@@ -38,6 +45,22 @@ function loadJson<T>(filePath: string, fallback: T): T {
 }
 function saveJson(filePath: string, data: unknown) {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf-8");
+}
+
+// ── Generic Supabase key-value store (table: kv_store, cols: key text PK, value jsonb) ─
+async function kvGet<T>(key: string, fallback: T): Promise<T> {
+  if (!db) return fallback;
+  try {
+    const { data, error } = await db.from("kv_store").select("value").eq("key", key).single();
+    if (error || !data) return fallback;
+    return data.value as T;
+  } catch { return fallback; }
+}
+async function kvSet(key: string, value: unknown): Promise<void> {
+  if (!db) return;
+  try {
+    await db.from("kv_store").upsert({ key, value }, { onConflict: "key" });
+  } catch (e) { console.error("[supabase] kvSet error:", e); }
 }
 
 const ORBIDI_API_BASE =
@@ -1145,20 +1168,21 @@ async function startServer() {
     }
   });
 
-  // --- Task status store (production worker progress, persisted to disk) ---
+  // --- Task status store (production worker progress, persisted to Supabase) ---
+  type TaskStatusEntry = { status: "pending" | "in_progress" | "done"; closedAt: string | null; userId: string; updatedAt: string; };
   const TASK_STATUS_FILE = path.join(DATA_DIR, "task-statuses.json");
-  const taskStatusStore: Record<string, {
-    status: "pending" | "in_progress" | "done";
-    closedAt: string | null;
-    userId: string;
-    updatedAt: string;
-  }> = loadJson(TASK_STATUS_FILE, {});
+  const taskStatusStore: Record<string, TaskStatusEntry> = await kvGet("task-statuses", loadJson(TASK_STATUS_FILE, {}));
+
+  async function saveTaskStatuses() {
+    await kvSet("task-statuses", taskStatusStore);
+    saveJson(TASK_STATUS_FILE, taskStatusStore); // local backup
+  }
 
   app.get("/api/task-statuses", (_req, res) => {
     res.json(taskStatusStore);
   });
 
-  app.post("/api/task-statuses", (req, res) => {
+  app.post("/api/task-statuses", async (req, res) => {
     const { userId, taskId, status, closedAt } = req.body as {
       userId: string; taskId: string; status: string; closedAt: string | null;
     };
@@ -1171,21 +1195,27 @@ async function startServer() {
       userId,
       updatedAt: new Date().toISOString(),
     };
-    saveJson(TASK_STATUS_FILE, taskStatusStore);
+    await saveTaskStatuses();
     res.json({ ok: true });
   });
 
-  // --- Assignment store (persisted to disk, with daily history) ---
+  // --- Assignment store (persisted to Supabase + local backup) ---
   const ASSIGNMENT_FILE = path.join(DATA_DIR, "last-assignment.json");
   const ASSIGNMENT_HISTORY_DIR = path.join(DATA_DIR, "assignment-history");
   if (!fs.existsSync(ASSIGNMENT_HISTORY_DIR)) fs.mkdirSync(ASSIGNMENT_HISTORY_DIR, { recursive: true });
 
   // --- Feedback history: task_id → last assignee (survives across runs/days) ---
   const FEEDBACK_HISTORY_FILE = path.join(DATA_DIR, "feedback-history.json");
-  const feedbackHistoryStore: Record<string, { person_id: string; person_name: string; assigned_at: string }> =
-    loadJson(FEEDBACK_HISTORY_FILE, {});
+  type FeedbackEntry = { person_id: string; person_name: string; assigned_at: string };
+  const feedbackHistoryStore: Record<string, FeedbackEntry> =
+    await kvGet("feedback-history", loadJson(FEEDBACK_HISTORY_FILE, {}));
 
-  let lastAssignmentResult: any = loadJson(ASSIGNMENT_FILE, null);
+  async function saveFeedbackHistory() {
+    await kvSet("feedback-history", feedbackHistoryStore);
+    saveJson(FEEDBACK_HISTORY_FILE, feedbackHistoryStore);
+  }
+
+  let lastAssignmentResult: any = await kvGet("last-assignment", loadJson(ASSIGNMENT_FILE, null));
 
   app.get("/api/assignment/last", (_req, res) => {
     if (!lastAssignmentResult) return res.status(404).json({ error: "No assignment run yet" });
@@ -1310,10 +1340,12 @@ async function startServer() {
       const result = runAssignment(accounts, rawTasks, target_date, days_window, work_mode as any, options);
       const enriched = { ...result, deadline: deadline ?? null };
       lastAssignmentResult = enriched;
+      await kvSet("last-assignment", enriched);
       saveJson(ASSIGNMENT_FILE, enriched);
 
       // Save to daily history (keyed by date + work_mode)
       const historyKey = `${target_date}_${work_mode}`;
+      await kvSet(`assignment-history:${historyKey}`, enriched);
       saveJson(path.join(ASSIGNMENT_HISTORY_DIR, `${historyKey}.json`), enriched);
 
       // Update feedback history: record who was assigned each feedback task this run
@@ -1332,7 +1364,7 @@ async function startServer() {
             }
           }
         }
-        saveJson(FEEDBACK_HISTORY_FILE, feedbackHistoryStore);
+        await saveFeedbackHistory();
       }
 
       res.json(enriched);
@@ -1347,16 +1379,21 @@ async function startServer() {
     res.json(feedbackHistoryStore);
   });
 
-  // --- Team member overrides (roles + work areas editable by PM) ---
+  // --- Team member overrides (roles + work areas editable by PM, persisted to Supabase) ---
   const TEAM_OVERRIDES_FILE = path.join(DATA_DIR, "team-overrides.json");
   const teamOverridesStore: Record<string, { roles: string[]; workAreas: string[] }> =
-    loadJson(TEAM_OVERRIDES_FILE, {});
+    await kvGet("team-overrides", loadJson(TEAM_OVERRIDES_FILE, {}));
+
+  async function saveTeamOverrides() {
+    await kvSet("team-overrides", teamOverridesStore);
+    saveJson(TEAM_OVERRIDES_FILE, teamOverridesStore);
+  }
 
   app.get("/api/team-overrides", (_req, res) => {
     res.json(teamOverridesStore);
   });
 
-  app.post("/api/team-overrides/:personId", (req, res) => {
+  app.post("/api/team-overrides/:personId", async (req, res) => {
     const { personId } = req.params;
     const { roles, workAreas } = req.body as { roles?: string[]; workAreas?: string[] };
     if (!personId) return res.status(400).json({ error: "personId required" });
@@ -1364,7 +1401,7 @@ async function startServer() {
       roles:     Array.isArray(roles)     ? roles     : [],
       workAreas: Array.isArray(workAreas) ? workAreas : [],
     };
-    saveJson(TEAM_OVERRIDES_FILE, teamOverridesStore);
+    await saveTeamOverrides();
     return res.json({ ok: true, data: teamOverridesStore[personId] });
   });
 
