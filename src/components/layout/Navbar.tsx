@@ -1,13 +1,17 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard, Users, CheckSquare, Activity,
-  UsersRound, Timer, CalendarClock, ListChecks, LogOut, TrendingUp,
+  UsersRound, Timer, CalendarClock, ListChecks, LogOut, TrendingUp, HelpCircle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/context/AuthContext";
 import { roleConfig } from "@/data/teamData";
 
-export function Navbar() {
+interface NavbarProps {
+  onOpenOnboarding?: () => void;
+}
+
+export function Navbar({ onOpenOnboarding }: NavbarProps = {}) {
   const location   = useLocation();
   const navigate   = useNavigate();
   const { user, logout } = useAuth();
@@ -87,6 +91,15 @@ export function Navbar() {
             <p className="text-xs font-semibold text-white truncate">{user?.name ?? "—"}</p>
             <p className="text-[10px] text-white/40 truncate uppercase tracking-wider">{roleLabel}</p>
           </div>
+          {onOpenOnboarding && (
+            <button
+              onClick={onOpenOnboarding}
+              title="Tour de la plataforma"
+              className="w-6 h-6 flex items-center justify-center rounded-lg text-white/30 hover:text-[#BEFF50] hover:bg-[#BEFF50]/10 transition-all shrink-0"
+            >
+              <HelpCircle className="w-3.5 h-3.5" />
+            </button>
+          )}
           <button
             onClick={handleLogout}
             title="Cerrar sesión"

@@ -16,6 +16,7 @@ import { Performance } from "@/pages/Performance";
 import { TeamPerformance } from "@/pages/TeamPerformance";
 import { Login } from "@/pages/Login";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
+import { Onboarding, useOnboarding } from "@/components/Onboarding";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -82,9 +83,16 @@ function AppRoutes() {
   }
 
   // Management → full access
+  return <ManagementLayout />;
+}
+
+function ManagementLayout() {
+  const { user } = useAuth();
+  const { open: onboardingOpen, openOnboarding, closeOnboarding } = useOnboarding(user?.id);
+
   return (
     <div className="flex bg-background min-h-screen">
-      <Navbar />
+      <Navbar onOpenOnboarding={openOnboarding} />
       <main className="flex-1 overflow-auto">
         <Routes>
           <Route path="/"               element={<Dashboard />} />
@@ -102,6 +110,13 @@ function AppRoutes() {
           <Route path="*"               element={<Navigate to="/" replace />} />
         </Routes>
       </main>
+      <Onboarding
+        userId={user?.id}
+        userName={user?.name}
+        open={onboardingOpen}
+        onClose={closeOnboarding}
+        isManagement={true}
+      />
     </div>
   );
 }

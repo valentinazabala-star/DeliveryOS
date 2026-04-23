@@ -1,17 +1,18 @@
 /**
- * Onboarding — guided tour for new production users.
+ * Onboarding — guided tour for production and management users.
  * Auto-shows on first login (keyed per userId in localStorage).
- * Also re-openable via the help button in MyAssignments.
+ * Re-openable via the ? button in Navbar (management) or MyAssignments (production).
  *
- * 8 steps covering: welcome, tasks, status buttons, feedback,
- * real-time sync, daily schedule, chat assistant, and ready-to-go.
+ * Management: 7 steps — welcome, assignment engine, feedback cycles,
+ *   team overrides, cache/refresh, history, ready.
+ * Production: 8 steps — welcome, tasks, status, feedback, sync, schedule, chat, ready.
  */
 import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Sparkles, ListChecks, RefreshCw, Zap, CloudUpload,
   Clock, MessageCircle, Rocket, ChevronLeft, ChevronRight,
-  X, Check,
+  X, Check, CalendarClock, Users, BarChart3,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -217,25 +218,137 @@ const STEPS: Step[] = [
   },
 ];
 
+// ── Management steps ───────────────────────────────────────────────────────────
+const MGMT_STEPS: Step[] = [
+  {
+    id: "welcome",
+    icon: Sparkles,
+    iconBg: "bg-[#BEFF50]/20",
+    iconColor: "text-lime-600",
+    accentColor: "#BEFF50",
+    title: (name) => `¡Hola, ${name.split(" ")[0]}! 👋`,
+    subtitle: "Bienvenido a DeliveryOS",
+    description: "Tu plataforma de gestión y asignación de tareas para el equipo de producción de Orqestra.",
+    points: [
+      "Asignas tareas al equipo desde el módulo Assignment",
+      "Ves el progreso de cada persona en tiempo real",
+      "El sistema sugiere asignaciones óptimas según carga y capacidad",
+    ],
+  },
+  {
+    id: "assignment",
+    icon: CalendarClock,
+    iconBg: "bg-blue-100",
+    iconColor: "text-blue-600",
+    accentColor: "#3b82f6",
+    title: () => "El motor de asignación",
+    subtitle: "Cómo funciona",
+    description: "Ve a Assignment, selecciona la fecha, el tipo de trabajo y la ventana de días. El sistema distribuye las tareas automáticamente según la capacidad de cada persona.",
+    points: [
+      "Modos: Nuevos, Recurrentes, Feedback, Tickets",
+      "Filtra por persona, producto o acción específica",
+      "El resultado muestra quién hace qué cada día",
+    ],
+  },
+  {
+    id: "feedback",
+    icon: Zap,
+    iconBg: "bg-orange-100",
+    iconColor: "text-orange-500",
+    accentColor: "#f97316",
+    title: () => "Ciclos de Feedback",
+    subtitle: "Continuidad garantizada",
+    description: "Cada vez que una tarea vuelve a TASK_PENDING_TO_APPLY_CHANGES, entra de nuevo al pool. El sistema prioriza al mismo especialista que la trabajó antes.",
+    points: [
+      "5 especialistas de Feedback siempre disponibles para cualquier tipo (SEO, GMB, RRSS)",
+      "El historial de asignaciones persiste entre sesiones",
+      "Si el especialista anterior no está disponible, el sistema busca al siguiente",
+    ],
+    demo: feedbackDemo,
+  },
+  {
+    id: "team",
+    icon: Users,
+    iconBg: "bg-purple-100",
+    iconColor: "text-purple-600",
+    accentColor: "#9333ea",
+    title: () => "Gestión del equipo",
+    subtitle: "Ajustes en tiempo real",
+    description: "En el módulo Team puedes ver la carga de trabajo de cada persona y ajustar roles o áreas si es necesario.",
+    points: [
+      "Vacaciones y ausencias se configuran en la vista de cada persona",
+      "Los cambios de rol se aplican en la siguiente asignación",
+      "Workload muestra la distribución visual por persona y día",
+    ],
+  },
+  {
+    id: "cache",
+    icon: RefreshCw,
+    iconBg: "bg-teal-100",
+    iconColor: "text-teal-600",
+    accentColor: "#14b8a6",
+    title: () => "Datos siempre frescos",
+    subtitle: "Actualización automática",
+    description: "El servidor mantiene la caché de las 1,898 cuentas con tareas activas y la actualiza automáticamente.",
+    points: [
+      "Fast refresh cada 45 min — solo cuentas conocidas (~5 min)",
+      "Rescan completo cada noche a las 3am hora Colombia (~80 min)",
+      "Puedes forzar actualización manual desde Tasks",
+    ],
+  },
+  {
+    id: "history",
+    icon: BarChart3,
+    iconBg: "bg-rose-100",
+    iconColor: "text-rose-600",
+    accentColor: "#f43f5e",
+    title: () => "Historial de asignaciones",
+    subtitle: "Auditoría y seguimiento",
+    description: "Cada asignación queda guardada con fecha, modo y resultado completo. Puedes revisarlas cuando quieras.",
+    points: [
+      "Los datos persisten en Supabase — sobreviven a reinicios del servidor",
+      "El progreso de cada trabajador se guarda en tiempo real",
+      "Performance muestra métricas históricas del equipo",
+    ],
+  },
+  {
+    id: "ready",
+    icon: Rocket,
+    iconBg: "bg-[#BEFF50]/20",
+    iconColor: "text-lime-600",
+    accentColor: "#BEFF50",
+    title: () => "¡Listo para gestionar!",
+    subtitle: "Todo configurado",
+    description: "Tienes acceso completo a la plataforma. Empieza por Assignment para hacer tu primera asignación real.",
+    points: [
+      "Empieza por Assignment → selecciona fecha de hoy y modo de trabajo",
+      "Si tienes dudas técnicas, el historial está siempre disponible",
+      "El equipo de producción ya tiene sus cuentas y puede ver sus tareas",
+    ],
+  },
+];
+
 // ── Storage key ────────────────────────────────────────────────────────────────
 const storageKey = (userId: string) => `opsos_onboarding_done_${userId}`;
 
 // ── Main modal ─────────────────────────────────────────────────────────────────
 interface OnboardingProps {
-  userId:   string;
-  userName: string;
-  open:     boolean;
-  onClose:  () => void;
+  userId:    string | undefined;
+  userName:  string | undefined;
+  open:      boolean;
+  onClose:   () => void;
+  isManagement?: boolean;
 }
 
-export function Onboarding({ userId, userName, open, onClose }: OnboardingProps) {
+export function Onboarding({ userId, userName, open, onClose, isManagement = false }: OnboardingProps) {
+  const steps = isManagement ? MGMT_STEPS : STEPS;
   const [step, setStep] = useState(0);
   const [dir,  setDir]  = useState(1);   // 1 = forward, -1 = back
-  const current = STEPS[step];
-  const isLast  = step === STEPS.length - 1;
+  const current = steps[step];
+  const isLast  = step === steps.length - 1;
 
   const handleClose = useCallback(() => {
-    localStorage.setItem(storageKey(userId), "true");
+    if (userId) localStorage.setItem(storageKey(userId), "true");
     onClose();
   }, [userId, onClose]);
 
@@ -296,7 +409,7 @@ export function Onboarding({ userId, userName, open, onClose }: OnboardingProps)
               <div className="h-1 bg-border">
                 <motion.div
                   className="h-full bg-foreground"
-                  animate={{ width: `${((step + 1) / STEPS.length) * 100}%` }}
+                  animate={{ width: `${((step + 1) / steps.length) * 100}%` }}
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
               </div>
@@ -304,7 +417,7 @@ export function Onboarding({ userId, userName, open, onClose }: OnboardingProps)
               {/* Step counter + close */}
               <div className="flex items-center justify-between px-6 pt-5 pb-0">
                 <div className="flex gap-1.5">
-                  {STEPS.map((_, i) => (
+                  {steps.map((_, i) => (
                     <div
                       key={i}
                       className={cn(
