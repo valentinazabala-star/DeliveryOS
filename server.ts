@@ -912,6 +912,72 @@ async function startServer() {
     res.json({ ok: true, message: "Full rescan started (~80 min). Poll /api/cache-status for progress." });
   });
 
+  // --- Admin: incremental rescan — scan missing UUIDs and MERGE into existing cache ---
+  let incrementalRunning = false;
+  app.post("/api/admin/incremental-rescan", async (_req, res) => {
+    if (incrementalRunning) return res.json({ ok: false, error: "Incremental scan already running" });
+    if (accountsInitialLoad) return res.json({ ok: false, error: "Full rescan already in progress" });
+
+    const knownUuids = new Set((accountsCache?.data ?? []).map((a: any) => a.account_uuid as string));
+    const missingUuids = ORBIDI_ACCOUNT_UUID_LIST.filter((u: string) => !knownUuids.has(u));
+    if (missingUuids.length === 0) return res.json({ ok: true, message: "Cache already complete", added: 0 });
+
+    res.json({ ok: true, message: `Scanning ${missingUuids.length} missing UUIDs in background…`, missing: missingUuids.length, current_accounts: knownUuids.size });
+
+    incrementalRunning = true;
+    (async () => {
+      try {
+        console.log(`[incremental] Scanning ${missingUuids.length} missing UUIDs…`);
+        const TASK_CONCURRENCY = 150;
+        const accountsWithTasks = new Set<string>();
+        const newTasks: any[] = [];
+
+        for (let i = 0; i < missingUuids.length; i += TASK_CONCURRENCY) {
+          const batch = missingUuids.slice(i, i + TASK_CONCURRENCY);
+          const results = await Promise.all(batch.map(async (uuid: string) => {
+            try {
+              const r = await fetchWithTimeout(
+                `${ORBIDI_API_BASE}/task-management/accounts/${uuid}/tasks-full`,
+                { headers: orbidiHeaders }
+              );
+              if (!r.ok) return [];
+              const data = await r.json();
+              const mapped = (data as any[]).map((t) => mapOrbidiTask(t, uuid));
+              if (mapped.length > 0) accountsWithTasks.add(uuid);
+              return mapped;
+            } catch { return []; }
+          }));
+          newTasks.push(...results.flat());
+        }
+
+        // Fetch briefs for newly found accounts
+        const BRIEF_CONCURRENCY = 20;
+        const newAccounts: any[] = [];
+        const newAccountUuids = [...accountsWithTasks];
+        for (let i = 0; i < newAccountUuids.length; i += BRIEF_CONCURRENCY) {
+          const wave = newAccountUuids.slice(i, i + BRIEF_CONCURRENCY);
+          const results = await Promise.all(wave.map((uuid) => fetchOneAccountWithBrief(uuid)));
+          newAccounts.push(...results.filter(Boolean));
+        }
+
+        // MERGE into existing cache
+        const existingAccounts = accountsCache?.data ?? [];
+        const existingTasks = tasksAllCache?.data ?? [];
+        const mergedAccounts = [...existingAccounts, ...newAccounts];
+        const mergedTasks = [...existingTasks, ...newTasks];
+        const now = Date.now();
+        accountsCache = { data: mergedAccounts, fetchedAt: now };
+        tasksAllCache = { data: mergedTasks, fetchedAt: now };
+        await saveCacheSnapshot(mergedAccounts, mergedTasks, now);
+        console.log(`[incremental] Done: +${newAccounts.length} accounts, +${newTasks.length} tasks. Total: ${mergedAccounts.length} accounts, ${mergedTasks.length} tasks.`);
+      } catch (e: any) {
+        console.error("[incremental] Failed:", e?.message);
+      } finally {
+        incrementalRunning = false;
+      }
+    })();
+  });
+
   // --- Admin: restore cache from Supabase Storage snapshot immediately ---
   app.post("/api/admin/restore-snapshot", async (_req, res) => {
     if (!db) return res.status(500).json({ ok: false, error: "Supabase not configured" });
